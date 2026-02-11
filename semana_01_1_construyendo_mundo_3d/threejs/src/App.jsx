@@ -30,7 +30,7 @@ export default function App() {
           )}
         </div>
         <div className="notes">
-          <p>Coloca tu modelo en <code>public/models/scene.glb</code> (o cambia la ruta en <code>App.jsx</code>).</p>
+          <p>Coloca tu modelo en <code>public/models/scene.obj</code> (o cambia la ruta en <code>App.jsx</code>).</p>
         </div>
       </aside>
 
@@ -39,7 +39,7 @@ export default function App() {
           <ambientLight intensity={0.6} />
           <directionalLight position={[5, 5, 5]} intensity={1} />
           <Suspense fallback={<Html center>Cargando modelo...</Html>}>
-            <ModelViewer src="/models/scene.glb" mode={mode} onLoaded={setStats} />
+            <ModelViewer src="/models/scene.obj" mode={mode} onLoaded={setStats} />
           </Suspense>
           <OrbitControls />
         </Canvas>

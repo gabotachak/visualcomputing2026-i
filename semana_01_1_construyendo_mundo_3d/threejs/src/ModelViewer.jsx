@@ -5,7 +5,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader'
 
-export default function ModelViewer({ src = '/models/scene.glb', mode = 'solid', onLoaded }) {
+export default function ModelViewer({ src = '/models/scene.obj', mode = 'solid', onLoaded }) {
   const [meshes, setMeshes] = useState(null)
 
   useEffect(() => {

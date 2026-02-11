@@ -6,7 +6,7 @@ Estructura del proyecto:
 
 - `index.html` — entrada Vite
 - `src/` — código fuente React
-- `public/models/scene.glb` — coloca aquí tu modelo (opcional)
+- `public/models/scene.obj` — coloca aquí tu modelo (opcional)
 
 Instalación y ejecución:
 
@@ -21,7 +21,7 @@ npm run dev
 
 Dónde poner modelos:
 
-- Por defecto el visor intenta cargar `/models/scene.glb`. Coloca tu archivo glTF/GLB en `threejs/public/models/scene.glb`.
+- Por defecto el visor intenta cargar `/models/scene.obj`. Coloca tu archivo OBJ en `threejs/public/models/scene.obj`.
 - También puedes cambiar la ruta en `src/App.jsx` (prop `src` del componente `ModelViewer`).
 
 Qué incluye:
@@ -33,4 +33,4 @@ Qué incluye:
 Notas:
 
 - Si no tienes un modelo, la app muestra un cubo de prueba.
-- Para mejores resultados usa modelos triangulados (GLTF / GLB).
+- Para mejores resultados usa modelos triangulados (OBJ).
