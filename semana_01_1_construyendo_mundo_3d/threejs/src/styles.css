@@ -1,0 +1,15 @@
+:root{
+  --panel-w: 280px;
+  --bg: #0f1720;
+  --panel: #0b1220;
+  --accent: #4fb0ff;
+}
+html,body,#root{height:100%;margin:0}
+.app-root{display:flex;height:100vh;background:linear-gradient(180deg,#071025 0%, #0b1622 100%);color:#e6eef8}
+.panel{width:var(--panel-w);padding:20px;background:var(--panel);box-shadow:2px 0 8px rgba(0,0,0,0.6)}
+.viewer{flex:1}
+.buttons{display:flex;flex-direction:column;gap:8px}
+.buttons button{padding:8px;border-radius:6px;border:0;background:#153040;color:#dff;cursor:pointer}
+.buttons button.active{background:var(--accent);color:#012}
+.stats{margin-top:12px;font-size:14px}
+.notes{font-size:12px;color:#9fb}
