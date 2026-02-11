@@ -16,10 +16,10 @@ Este curso proporciona una introducción a los conceptos básicos de la computac
 
 ## Estructura del Repositorio
 
-- [semana_01_1_construyendo_mundo_3d/](./semana_01_1_construyendo_mundo_3d/README.md)
-  - [media/](./semana_01_1_construyendo_mundo_3d/media/README.md)
-  - [python/](./semana_01_1_construyendo_mundo_3d/python/README.md)
-  - [threejs/](./semana_01_1_construyendo_mundo_3d/threejs/README.md)
-  - [unity/](./semana_01_1_construyendo_mundo_3d/unity/README.md)
+- [semana_01_1_construyendo_mundo_3d/](./semana_01_1_construyendo_mundo_3d)
+  - [media/](./semana_01_1_construyendo_mundo_3d/media)
+  - [python/](./semana_01_1_construyendo_mundo_3d/python)
+  - [threejs/](./semana_01_1_construyendo_mundo_3d/threejs)
+  - [unity/](./semana_01_1_construyendo_mundo_3d/unity)
 - README.md
 - .gitignore
