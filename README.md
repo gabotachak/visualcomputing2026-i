@@ -21,5 +21,10 @@ Este curso proporciona una introducción a los conceptos básicos de la computac
   - [python/](./semana_01_1_construyendo_mundo_3d/python)
   - [threejs/](./semana_01_1_construyendo_mundo_3d/threejs)
   - [unity/](./semana_01_1_construyendo_mundo_3d/unity)
+- [semana_01_2_conversion_formatos_3d/](./semana_01_2_conversion_formatos_3d)
+  - [media/](./semana_01_2_conversion_formatos_3d/media)
+  - [models/](./semana_01_2_conversion_formatos_3d/models)
+  - [python/](./semana_01_2_conversion_formatos_3d/python)
+  - [threejs/](./semana_01_2_conversion_formatos_3d/threejs)
 - README.md
 - .gitignore
