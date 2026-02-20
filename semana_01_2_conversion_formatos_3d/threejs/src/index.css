@@ -43,7 +43,7 @@ body {
   flex-direction: column;
   gap: 1.5rem;
   border-right: 1px solid #333;
-  box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
   z-index: 10;
 }
 

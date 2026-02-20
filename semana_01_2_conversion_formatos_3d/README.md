@@ -44,19 +44,19 @@ Se construyó una aplicación Web Single Page (`App.jsx` + `Vite` con React 18) 
 
 ## Resultados visuales
 
-*(Aquí irán las imágenes definitivas generadas de tus propios objetos. Por ahora, debes capturar los ejecutados con los modelos genéricos.)*
+A continuación se muestran las capturas de pantalla de los resultados visuales de los módulos de la Semana 01.2.
 
 ### Python - Implementación
 
-![Comparación de Formatos 3D en Consola](./media/python/comparacion_formatos.png)
+![Comparación de Formatos 3D en Consola](./media/python/format_comparison.png)
 
-*(Reemplazar descripción cuando se tomen las fotografías: Captura de pantalla del notebook `model_converter.ipynb` mostrando las estadísticas del modelo OBJ vs STL vs GLTF y su consecuente exportación a gráfica Matplotlib).*
+*Captura de pantalla del notebook `model_converter.ipynb` mostrando la exportación a gráfica Matplotlib.*
 
 ### Three.js - Implementación
 
-![Vista General de la App Three.js](./media/threejs/captura_gltf.png)
+![Demostración Three.js](./media/screenshots/threejs.gif)
 
-*(Reemplazar descripción cuando se tomen las fotografías: Demostración GIF/PNG de la interactividad entre la interfaz al cargar el GLTF preservando su topología web-ready en React).*
+*Demostración animada de la interactividad entre la interfaz al cargar el GLTF preservando su topología web-ready en React.*
 
 ---
 
@@ -160,9 +160,9 @@ semana_01_2_conversion_formatos_3d/
 │   │   └── index.css           # Estilizado de alto nivel dark-mode
 │   └── public/models/          # Modelos servidos estáticamente
 ├── models/                     # Carpeta de salida raw temporal compartida a Python y React
-├── media/                      # Capturas resultantes (Tu debes subirlas aquí)
-│   ├── python/                 # Capturas del shell de Linux y Matplotlib
-│   └── threejs/                # Capturas WebGL en tiempo real
+├── media/                      # Capturas resultantes y material audiovisual
+│   ├── python/                 # Capturas de Matplotlib y resultados Python
+│   └── screenshots/            # Grabaciones y animaciones GIF demostrativas
 └── README.md                   # Documentación principal final
 ```
 

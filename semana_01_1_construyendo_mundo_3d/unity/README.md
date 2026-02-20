@@ -46,6 +46,12 @@ Se desarrolló un proyecto interactivo en Unity que permite cargar, visualizar y
 
 ---
 
+## 🎥 Demostración
+
+![Demostración en Unity](../media/screenshots/unity.gif)
+
+---
+
 ## 📋 Estructura del proyecto
 
 ```

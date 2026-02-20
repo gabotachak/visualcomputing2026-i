@@ -8,7 +8,7 @@ Archivos generados por el notebook Jupyter `model_visualization.ipynb`.
 
 ### modelo_completo.png
 
-![Modelo 3D - Visualización Completa](./modelo_completo.png)
+![Modelo 3D - Visualización Completa](./python/modelo_completo.png)
 
 **Descripción**: Visualización integral del modelo en 6 perspectivas diferentes:
 - **Fila 1**: 
@@ -29,7 +29,7 @@ Archivos generados por el notebook Jupyter `model_visualization.ipynb`.
 
 ### vertices_edges_faces.png
 
-![Componentes 3D - Vértices, Aristas y Caras](./vertices_edges_faces.png)
+![Componentes 3D - Vértices, Aristas y Caras](./python/vertices_edges_faces.png)
 
 **Descripción**: Desglose detallado de los tres componentes fundamentales de una malla 3D:
 - **Izquierda**: 🔴 **Vértices** - 25,979 puntos en rojo mostrando los nodos de la malla
@@ -49,7 +49,7 @@ Archivos generados por el notebook Jupyter `model_visualization.ipynb`.
 
 ### modelo_rotacion.gif
 
-![Rotación del Modelo Completo](./modelo_rotacion.gif)
+![Rotación del Modelo Completo](./python/modelo_rotacion.gif)
 
 **Descripción**: Animación que muestra el modelo 3D completo (renderizado en cian) rotando continuamente alrededor del eje vertical. Permite visualizar la geometría desde todos los ángulos.
 
@@ -66,7 +66,7 @@ Archivos generados por el notebook Jupyter `model_visualization.ipynb`.
 
 ### vertices_rotation.gif
 
-![Rotación de Vértices con Gradiente](./vertices_rotation.gif)
+![Rotación de Vértices con Gradiente](./python/vertices_rotation.gif)
 
 **Descripción**: Visualización animada que muestra todos los 25,979 vértices del modelo con un gradiente de colores basado en la coordenada X (viridis colormap). El modelo rota continuamente permitiendo ver la distribución espacial de los vértices.
 
@@ -83,7 +83,7 @@ Archivos generados por el notebook Jupyter `model_visualization.ipynb`.
 
 ### faces_rotation.gif
 
-![Rotación de Caras Coloreadas](./faces_rotation.gif)
+![Rotación de Caras Coloreadas](./python/faces_rotation.gif)
 
 **Descripción**: Animación que muestra todas las 45,386 caras triangulares del modelo coloreadas aleatoriamente. Rotando continuamente, permite visualizar cómo se distribuyen las caras que forman la superficie 3D.
 
@@ -130,11 +130,8 @@ Archivos generados por el notebook Jupyter `model_visualization.ipynb`.
 
 ## 🔗 Referencias
 
-- [Volver a media/](../)
-- [Notebook Python](../../python/model_visualization.ipynb)
-   ├── mesh_rotation_animation.gif
-   └── mesh_rotation_animation.mp4
-```
+- [Volver Atrás](../)
+- [Notebook Python](../python/model_visualization.ipynb)
 
 ## ⚙️ Parámetros personalizables
 

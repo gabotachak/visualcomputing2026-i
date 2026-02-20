@@ -109,7 +109,7 @@ Ejecuta todas las celdas en orden. La primera celda instalará automáticamente 
 
 ## 📁 Archivos generados
 
-El notebook genera los siguientes archivos (guardados en `../media/`):
+El notebook genera los siguientes archivos (guardados en `../media/python/`):
 
 | Archivo | Descripción | Formato |
 |---------|-------------|---------|
@@ -118,6 +118,10 @@ El notebook genera los siguientes archivos (guardados en `../media/`):
 | `modelo_rotacion.gif` | Animación de rotación completa | GIF (36 frames, 3.6s) |
 | `vertices_rotation.gif` | Animación de vértices | GIF (36 frames, 3.6s) |
 | `faces_rotation.gif` | Animación de caras | GIF (36 frames, 3.6s) |
+
+### Grabación de Pantalla (Ejecución)
+
+![Ejecución del Notebook](../media/screenshots/python.gif)
 
 ---
 

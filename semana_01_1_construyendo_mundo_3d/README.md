@@ -105,27 +105,45 @@ Se desarrolló una aplicación web interactiva (`threejs/`) que permite visualiz
 
 ### Python - Visualización Completa
 
-![Modelo 3D - 6 Vistas](./media/modelo_completo.png)
+![Modelo 3D - 6 Vistas](./media/python/modelo_completo.png)
 
 Visualización completa del modelo 3D desde 6 perspectivas diferentes: (1) vista normal del modelo renderizado, (2) visualización de vértices en rojo (25,979 puntos), (3) visualización de aristas en azul (71,871 líneas), (4) visualización de caras en cian, (5) vista wireframe mostrando la estructura triangular, (6) tabla de estadísticas con información numérica del modelo.
 
-![Componentes - Vértices, Aristas y Caras](./media/vertices_edges_faces.png)
+![Componentes - Vértices, Aristas y Caras](./media/python/vertices_edges_faces.png)
 
 Vista detallada por separado de los tres componentes fundamentales de una malla 3D: vértices representados como puntos rojos, aristas como líneas azules mostrando conectividad, y caras como triángulos coloreados aleatoriamente. Este desglose permite entender claramente la estructura poligonal del modelo.
 
 ### Python - Animaciones
 
-![Animación de Rotación Completa](./media/modelo_rotacion.gif)
+![Animación de Rotación Completa](./media/python/modelo_rotacion.gif)
 
 Animación GIF de 3.6 segundos mostrando el modelo 3D completamente renderizado rotando continuamente alrededor del eje vertical. Permite visualizar el modelo desde todos los ángulos y entender su geometría en tres dimensiones.
 
-![Animación de Vértices](./media/vertices_rotation.gif)
+![Animación de Vértices](./media/python/vertices_rotation.gif)
 
 Visualización animada de los 25,979 vértices del modelo con gradiente de colores basado en coordenadas X, rotando continuamente. Muestra claramente la densidad y distribución de vértices en la malla.
 
-![Animación de Caras](./media/faces_rotation.gif)
+![Animación de Caras](./media/python/faces_rotation.gif)
 
 Animación de las 45,386 caras triangulares del modelo coloreadas aleatoriamente, rotando para visualizar cómo se distribuyen las caras en la estructura 3D. Permite apreciar la complejidad de la malla poligonal.
+
+### Python - Demostración de Notebook
+
+![Demostración Python](./media/screenshots/python.gif)
+
+Grabación de pantalla mostrando la ejecución del notebook Jupyter de visualización.
+
+### Three.js - Interacción Web
+
+![Demostración Three.js](./media/screenshots/threejs.gif)
+
+Grabación de pantalla mostrando la interacción con el modelo 3D en la aplicación web, el cambio entre los diferentes modos de visualización y la captura automática de vistas.
+
+### Unity - Análisis en Tiempo Real
+
+![Demostración Unity](./media/screenshots/unity.gif)
+
+Grabación de pantalla mostrando el uso del proyecto MeshVisualizer en Unity, la navegación con controles de cámara interactivos y el análisis de la malla.
 
 ---
 
@@ -288,15 +306,19 @@ semana_01_1_construyendo_mundo_3d/
 │   │   └── ProjectSettings/         # Configuración URP
 │   └── README.md                    # ✅ Documentación Unity
 ├── media/
-│   ├── python/                      # ✅ 5 archivos generados
+│   ├── python/                      # ✅ Archivos multimedia generados por scripts en Python
 │   │   ├── modelo_completo.png
 │   │   ├── vertices_edges_faces.png
 │   │   ├── modelo_rotacion.gif
 │   │   ├── vertices_rotation.gif
 │   │   └── faces_rotation.gif
-│   ├── threejs/                     # ✅ Imágenes capturadas automáticamente
+│   ├── screenshots/                 # ✅ Grabaciones de pantalla de los ejercicios
+│   │   ├── python.gif
+│   │   ├── threejs.gif
+│   │   └── unity.gif
+│   ├── threejs/                     # ✅ Screenshots y capturas de Three.js
 │   │   └── README.md
-│   ├── unity/                       # ✅ Capturas de pantalla del proyecto
+│   ├── unity/                       # ✅ Imágenes generadas desde Unity
 │   │   └── README.md
 │   └── README.md
 └── README.md                        # Este archivo (resumen general)
@@ -318,7 +340,7 @@ semana_01_1_construyendo_mundo_3d/
 
 - [X] Carpeta con nombre `semana_01_1_construyendo_mundo_3d/`
 - [X] Código limpio y funcional en carpetas por entorno
-- [X] GIFs/imágenes incluidos con nombres descriptivos en carpeta `media/`
+- [X] GIFs/imágenes incluidos con nombres descriptivos en carpeta subcarpetas de `media/`
 - [X] README completo con todas las secciones requeridas
 - [X] Mínimo 2 capturas/GIFs por implementación
 - [X] Commits descriptivos en inglés

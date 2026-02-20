@@ -52,6 +52,12 @@ npm run preview
 
 ---
 
+## 🎥 Demostración
+
+![Demostración de Interacción](../media/screenshots/threejs.gif)
+
+---
+
 ## 📁 Estructura del proyecto
 
 ```
