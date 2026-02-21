@@ -109,11 +109,12 @@ useFrame((state, delta) => {
 
 ### Aprendizajes
 
-Reforcé mi comprensión acerca de cómo funciona un Grafo de Escena (Scene Graph) internamente, interiorizando el concepto de sistemas de coordenadas locales versus sistemas globales. Pude constatar cómo la manipulación de una matriz de transformación superior multiplica su efecto a lo largo de toda la cadena de decendientes. Adicionalmente, mejoré mi habilidad para configurar interfaces interactivas para WebGL utilizando la librería `leva`.
+Reforcé mi comprensión sobre Grafos de Escena, sistemas de coordenadas, y cómo las transformaciones se propagan a través de la cadena de descendientes. Además, mejoré en la configuración de interfaces con `leva`.
 
 ### Dificultades
 
-Al inicio, integrar la animación rotacional (vía `useFrame`) entrando en conflicto directo con los values estáticos asignados a la rotación de los componentes generó un pequeño glitch visual debido a la sobrescritura de estados por frame. Fue necesario aislar los Refs o condicionar su actualización matemática mediante la evaluación condicional de los estados y la animación auto-gestionada. 
+Inicialmente, hubo conflictos visuales entre la rotación asignada estáticamente y la manejada por `useFrame`. Fue necesario usar Refs y ejecutar la actualización condicionalmente. 
+
 
 ---
 

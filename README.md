@@ -26,5 +26,13 @@ Este curso proporciona una introducción a los conceptos básicos de la computac
   - [models/](./semana_01_2_conversion_formatos_3d/models)
   - [python/](./semana_01_2_conversion_formatos_3d/python)
   - [threejs/](./semana_01_2_conversion_formatos_3d/threejs)
+- [semana_01_3_jerarquias_transformaciones/](./semana_01_3_jerarquias_transformaciones)
+  - [media/](./semana_01_3_jerarquias_transformaciones/media)
+  - [threejs/](./semana_01_3_jerarquias_transformaciones/threejs)
+- [semana_01_4_transformaciones/](./semana_01_4_transformaciones)
+  - [media/](./semana_01_4_transformaciones/media)
+  - [processing/](./semana_01_4_transformaciones/processing)
+  - [python/](./semana_01_4_transformaciones/python)
+  - [threejs/](./semana_01_4_transformaciones/threejs)
 - README.md
 - .gitignore

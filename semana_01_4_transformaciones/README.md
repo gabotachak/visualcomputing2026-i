@@ -1,6 +1,6 @@
 # Taller Transformaciones
 
-**Estudiante:** Gabriel Otachak  
+**Estudiante:** Gabriel Andres Anzola Tachak  
 **Fecha de entrega:** 20 de Febrero de 2026  
 
 ## Descripción breve
