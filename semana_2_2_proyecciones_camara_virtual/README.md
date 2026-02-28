@@ -1,5 +1,6 @@
 # Taller Proyecciones 3D: Cómo ve una una cámara virtual
-Sebastián Andrade Cedano
+
+Gabriel Andres Anzola Tachak
 
 Entregado: 27 Feb 2026
 
@@ -10,6 +11,7 @@ El taller consiste en experimentar con los diversos tipos de proyección de las 
 ## Implementaciones
 
 ### Unity
+
 Se ubicó un plano en la escena, y se ubicaron sobre este varios cubos y esferas en distintas posiciones.
 
 <img src="./media/scene.png" alt="Sample Image" width="400"/>
@@ -19,6 +21,7 @@ Se agregó también un toggle button, un slider y un TMP Text, cuyas funciones s
 En el script se agregaron estos Game Objects y se manejan de la siguiente forma:
 
 El método `SwitchMode` nos permite cambiar el modo de la cámara usando el toggle button, se encarga de configurar los valores máximos y mínimos del slider para configurar o el size de la proyección ortográfica o el fov de la perspectiva.
+
 ```
     public void SwitchMode()
     {
@@ -64,6 +67,7 @@ El método `ManageSlider` se encarga de detectar el modo actual de la cámara y 
         matrixText.text = cam.projectionMatrix.ToString("F2");
     }
 ```
+
 #### Escena en ejecución
 
 ![idk](./media/cameras.gif)
@@ -71,5 +75,6 @@ El método `ManageSlider` se encarga de detectar el modo actual de la cámara y 
 Se puede observar en el gif, como difieren la proyección ortográfica y en perspectiva, y como el cambiar los parametros de estas proyecciones deforma la manera en la que los diversos objetos se representan en la pantalla.
 
 ## Aprendizajes y dificultades
-* La proyección ortogonal difiere bastante de la perspectiva.
-* Los parámetros de size y fov afectan significativamente la forma en la que se observan los objetos.
+
+- La proyección ortogonal difiere bastante de la perspectiva.
+- Los parámetros de size y fov afectan significativamente la forma en la que se observan los objetos.

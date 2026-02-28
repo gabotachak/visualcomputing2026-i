@@ -1,6 +1,6 @@
 # Taller transformaciones homogéneas y cambios de base
 
-Sebastián Andrade Cedano
+Gabriel Andres Anzola Tachak
 
 Entregado: 27 Feb 2026
 

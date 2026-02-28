@@ -1,5 +1,6 @@
 # Taller Espacios Proyectivos y Matrices de Proyección
-Sebastián Andrade Cedano
+
+Gabriel Andres Anzola Tachak
 
 Entregado: 27 Feb 2026
 
@@ -10,6 +11,7 @@ Entregado: 27 Feb 2026
 ### Python
 
 Para esta implementación, se definieron 3 puntos en 3D con coordenadas homogeneas.
+
 ```
 puntos = np.array([
     [1,2,1,1],
@@ -18,11 +20,13 @@ puntos = np.array([
 ]).T
 
 ```
+
 Primero se hizo un plot con los 3 puntos en 3D con colores amarillo, azul y rojo, respectivamente, para hacerse a a la idea de como se ven estos en un espacio 3D.
 
 <img src="./media/python_3d.png" alt="Sample Image" width="400"/>
 
 Luego se definió la siguiente función, para poder graficar la perspectiva con diferentes distancias focales.
+
 ```
 def plot_perspective(dist):
   puntos_proy = proyectar_perspectiva(puntos, d=dist)
@@ -102,11 +106,15 @@ Para el ejercicio en processing, ubicamos 3 cubos con diferentes valores de `z`,
   box(80);
   popMatrix();
 ```
+
 #### Proyección en perspectiva
+
 <img src="./media/processing_perspectiva.png" alt="Sample Image" width="400"/>
 
 #### Proyección ortogonal
+
 <img src="./media/processing_orto.png" alt="Sample Image" width="400"/>
 
 ## Aprendizajes y dificultades
-* Las "Cámaras" en motores gráficos son en realidad una matriz de proyección.
+
+- Las "Cámaras" en motores gráficos son en realidad una matriz de proyección.
