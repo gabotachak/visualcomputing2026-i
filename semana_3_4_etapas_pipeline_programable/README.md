@@ -33,6 +33,7 @@ per-fragmento sin recompilar el shader.
 | Entorno  | Archivo(s) | Descripción |
 |----------|-----------|-------------|
 | Three.js | `src/App.jsx` + `src/shaders/vertex.glsl` + `src/shaders/fragment.glsl` | Pipeline completo con UI interactiva |
+| Unity    | `unity/project_3_4/Assets/Shaders/...` | Pipeline Shader (HLSL) y script auto-setup (C#) |
 
 ---
 
@@ -120,6 +121,39 @@ import fragmentShader from './shaders/fragment.glsl?raw';
 const material = new THREE.ShaderMaterial({ vertexShader, fragmentShader, uniforms });
 ```
 
+### Unity — Pipeline Programable (HLSL y Automatización)
+
+Se estructuró el proyecto en Unity 6 utilizando un shader clásico `.shader` tipo ShaderLab que implementa las etapas Vertex y Fragment mediante código HLSL directamente. Al carecer de componentes generadores manuales en el editor, se elaboró un script C# `ShaderDemoSetup.cs` que orquesta la carga automática, asignación de materiales e instanciación de primitivas en la escena de pruebas.
+
+**ShaderLab + HLSL (Vertex & Fragment):**
+
+```glsl
+// En la etapa de Vertex (Vertex Shader)
+float waveX = sin(v.vertex.x * 5.0 + _Time.y * 3.0) * 0.12;
+v.vertex.z += waveX;
+
+o.vertex = UnityObjectToClipPos(v.vertex);
+o.normalWS = UnityObjectToWorldNormal(v.normal);
+
+// En la etapa Fragment (Fragment Shader)
+float3 n = normalize(i.normalWS);
+float fresnel = pow(1.0 - max(dot(n, i.viewDirWS), 0.0), _FresnelPower);
+```
+
+**Script de Setup Automático (C#):**
+
+```csharp
+Material pipelineMat = new Material(Shader.Find("Custom/PipelinePersonalizado"));
+pipelineMat.SetColor("_Color", new Color(0.1f, 0.5f, 0.9f));
+pipelineMat.SetFloat("_FresnelPower", 4.0f);
+AssetDatabase.CreateAsset(pipelineMat, "Assets/Materials/PipelineShaderMaterial.mat");
+sphere.GetComponent<Renderer>().sharedMaterial = pipelineMat;
+```
+
+A través de una simulación algorítmica de manipulación de la variable global de Tiempo (`_Time`) desde procesamiento Batchmode y la extracción iterada a una textura en memoria RAM (`RenderTexture`), se lograron exportar 30 imágenes continuas que se unificaron para visualizar la muestra dinámica del Shader evaluándose interactivo de forma nativa en el motor.
+
+![Pipeline Programable en Unity](./media/unity_pipeline_test.gif)
+
 ---
 
 ## Prompts utilizados
@@ -151,6 +185,11 @@ verificada manualmente contra las ecuaciones del enunciado.
 
 ```
 semana_3_4_etapas_pipeline_programable/
+├── unity/
+│   └── project_3_4/
+│       └── Assets/
+│           ├── Shaders/PipelinePersonalizado.shader
+│           └── Scripts/ShaderDemoSetup.cs
 ├── threejs/
 │   ├── index.html
 │   ├── package.json
