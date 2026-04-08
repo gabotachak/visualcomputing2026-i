@@ -45,6 +45,8 @@ Capturas disponibles en `media/` tras ejecutar `npm run dev`.
 | `media/pipeline_overview.png` | Esfera deformada con normal-color + Fresnel |
 | `media/fresnel_comparison.png` | Mismo frame con Fresnel power = 1 vs 7 |
 
+![Etapas del Pipeline Programable gif](./media/pipeline_test.gif)
+
 ---
 
 ## Código relevante

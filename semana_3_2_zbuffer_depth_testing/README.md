@@ -54,6 +54,8 @@ En la segunda parte (Three.js / React Three Fiber) se construye una escena inter
 | `media/zfighting_demo.png` | Z-fighting con separación Δz decreciente |
 | `media/zbuffer_rotation.gif` | GIF animado — rotación de la escena Painter vs Z-buffer |
 
+![ZBuffer Depth Testing gif](./media/zbuffer_test.gif)
+
 ---
 
 ## Código relevante

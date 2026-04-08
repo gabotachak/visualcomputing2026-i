@@ -47,6 +47,8 @@ el vector XYZ al espacio de color RGB).
 
 Capturas disponibles en `media/` tras ejecutar `npm run dev`.
 
+![Cálculo y Visualización de Normales gif](./media/normales_test.gif)
+
 ---
 
 ## Código relevante
