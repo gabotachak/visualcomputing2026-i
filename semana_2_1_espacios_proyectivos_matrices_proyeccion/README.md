@@ -1,120 +1,219 @@
 # Taller Espacios Proyectivos y Matrices de Proyección
 
-Gabriel Andres Anzola Tachak
+**Estudiante:** Gabriel Andres Anzola Tachak  
+**Entregado:** 27 Feb 2026
 
-Entregado: 27 Feb 2026
+---
 
 ## Objetivo
+
+Comprender la geometría proyectiva como fundamento matemático del pipeline gráfico. Se implementaron y compararon las dos proyecciones clásicas —perspectiva y ortogonal— desde sus matrices homogéneas, demostrando cómo un motor gráfico pasa de un punto 3D a un píxel en pantalla.
+
+---
+
+## Fundamento matemático
+
+### Coordenadas homogéneas
+
+Para poder representar traslación como multiplicación de matrices (necesario para componer transformaciones con una sola operación), se agrega una coordenada extra `w` a cada punto:
+
+```
+Punto 3D (x, y, z)  →  Coordenada homogénea (x, y, z, w)
+```
+
+Para recuperar el punto euclideano se divide por `w`:
+
+```
+(x, y, z, w)  →  (x/w, y/w, z/w)
+```
+
+### Matriz de proyección en perspectiva
+
+La cámara de perspectiva simula cómo el ojo humano percibe profundidad: los objetos lejanos aparecen más pequeños. La matriz usada en este taller, con distancia focal `d`, es:
+
+```
+     ┌ 1  0   0   0 ┐
+P =  │ 0  1   0   0 │
+     │ 0  0   1   0 │
+     └ 0  0  1/d  0 ┘
+```
+
+Al multiplicar un punto homogéneo `(x, y, z, 1)` por esta matriz se obtiene:
+
+```
+P · (x, y, z, 1)ᵀ = (x, y, z, z/d)
+```
+
+Dividiendo por `w = z/d` se recuperan las coordenadas proyectadas:
+
+```
+x' = x · d/z
+y' = y · d/z
+```
+
+El factor `d/z` es la clave: a mayor `z` (más lejos), el punto se achica, produciendo la percepción de profundidad.
+
+### Matriz de proyección ortogonal
+
+La proyección ortogonal elimina directamente la componente Z, sin escalar x ni y por la distancia. Los objetos mantienen su tamaño independientemente de su profundidad:
+
+```
+     ┌ 1  0  0  0 ┐
+P =  │ 0  1  0  0 │
+     │ 0  0  0  0 │
+     └ 0  0  0  1 ┘
+```
+
+Resultado: `(x, y, 0, 1)` → simplemente se proyecta el punto sobre el plano XY, descartando Z.
+
+### Efecto de la distancia focal `d`
+
+| `d` pequeño | FOV amplio — los puntos se dispersan, se exagera la perspectiva |
+|-------------|----------------------------------------------------------------|
+| `d` grande  | FOV estrecho — los puntos convergen, la escena parece "plana" |
+
+---
 
 ## Implementaciones
 
 ### Python
 
-Para esta implementación, se definieron 3 puntos en 3D con coordenadas homogeneas.
+Se definieron 3 puntos en 3D con coordenadas homogéneas y se implementaron manualmente ambas matrices de proyección con NumPy.
 
-```
+```python
+import numpy as np
+
 puntos = np.array([
-    [1,2,1,1],
-    [3,4,5,1],
-    [2,1,2,1]
-]).T
+    [1, 2, 1, 1],
+    [3, 4, 5, 1],
+    [2, 1, 2, 1]
+]).T  # Shape (4, 3) — cada columna es un punto homogéneo
 
+def proyectar_perspectiva(puntos, d=1.0):
+    P = np.array([
+        [1, 0, 0,   0],
+        [0, 1, 0,   0],
+        [0, 0, 1,   0],
+        [0, 0, 1/d, 0]
+    ])
+    proy = P @ puntos
+    proy /= proy[-1, :]   # División por w para volver a coordenadas euclideanas
+    return proy
+
+def proyectar_ortogonal(puntos):
+    P = np.array([
+        [1, 0, 0, 0],
+        [0, 1, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 1]
+    ])
+    return P @ puntos
 ```
 
-Primero se hizo un plot con los 3 puntos en 3D con colores amarillo, azul y rojo, respectivamente, para hacerse a a la idea de como se ven estos en un espacio 3D.
+Primero se visualizaron los puntos en el espacio 3D para tener referencia:
 
-<img src="./media/python_3d.png" alt="Sample Image" width="400"/>
+<img src="./media/python_3d.png" alt="Puntos en 3D" width="400"/>
 
-Luego se definió la siguiente función, para poder graficar la perspectiva con diferentes distancias focales.
+Luego se graficó la proyección perspectiva con tres distancias focales distintas (`d = 0.5, 1, 2`) para observar cómo `d` afecta la dispersión de los puntos proyectados:
 
-```
-def plot_perspective(dist):
-  puntos_proy = proyectar_perspectiva(puntos, d=dist)
-  plt.figure()
+<img src="./media/python_perspectiva_0.png" alt="Perspectiva d=0.5" width="400"/>
+<img src="./media/python_perspectiva_1.png" alt="Perspectiva d=1" width="400"/>
+<img src="./media/python_perspectiva_2.png" alt="Perspectiva d=2" width="400"/>
 
-  for i in range(puntos_proy.shape[1]):
-      plt.scatter(
-          puntos_proy[0, i],
-          puntos_proy[1, i],
-          color=colores[i],
-          s=100
-      )
+Finalmente la proyección ortogonal, donde los puntos caen directamente en sus coordenadas XY:
 
-  plt.xlabel("X proyectado")
-  plt.ylabel("Y proyectado")
-  plt.title(f"Proyección en Perspectiva d={dist}")
-  plt.axhline(0)
-  plt.axvline(0)
-  plt.xlim(-5, 5)
-  plt.ylim(-5, 5)
+<img src="./media/python_orto.png" alt="Proyección ortogonal" width="400"/>
 
-  plt.show()
-```
-
-Los gráficos obtenidos fueron los siguientes.
-
-<img src="./media/python_perspectiva_0.png" alt="Sample Image" width="400"/>
-
-<img src="./media/python_perspectiva_1.png" alt="Sample Image" width="400"/>
-
-<img src="./media/python_perspectiva_2.png" alt="Sample Image" width="400"/>
-
-Y por último la proyección ortogonal.
-
-<img src="./media/python_orto.png" alt="Sample Image" width="400"/>
+---
 
 ### Unity
 
-Para esta escena se colocaron 3 cubos alineados en el eje Z. Lo primero que observamos es como se ven estos a través de la cámara con proyección en perspectiva, la cual es la configuración por default de Unity.
+Se colocaron 3 cubos alineados en el eje Z para comparar ambas proyecciones directamente en el motor.
 
-<img src="./media/unity_perspectiva.png" alt="Sample Image" width="400"/>
+**Perspectiva (configuración por defecto):** los cubos más lejanos se ven más pequeños.
 
-Ahora observamos la cámara en proyección ortogonal
+<img src="./media/unity_perspectiva.png" alt="Unity perspectiva" width="400"/>
 
-<img src="./media/unity_orto.png" alt="Sample Image" width="400"/>
+**Ortográfica:** los tres cubos se ven del mismo tamaño aunque estén a distintas profundidades.
 
-Ahora, de vuelta en la proyección en perspectiva vamos a proceder a cambiar los valores de `Field of View (FOV)` y los clipping plane `Near` y `Far`. Para observar que efecto tienen estos en la forma en la que vemos los cubos.
+<img src="./media/unity_orto.png" alt="Unity ortogonal" width="400"/>
 
-Con un FOV de 30, el cual es la mitad del FOV por defecto, observamos que al ser encogido el frustrum, se recorta una parte de los cubos.
+**FOV reducido a 30°:** al estrechar el frustum se recortan los cubos de los costados.
 
-<img src="./media/unity_fov_30.png" alt="Sample Image" width="400"/>
+<img src="./media/unity_fov_30.png" alt="Unity FOV 30" width="400"/>
 
-Ahora, si ajustamos el `Near` justo en 3.5 que es cuando empieza a rozar con los cubos, vemos que estos no se dibujan de manera apropiada, debido a que su cara frontal no está dentro del espacio que la cámara proyecta.
+**Near clipping plane ajustado a 3.5:** la cara frontal del cubo más cercano deja de renderizarse porque queda fuera del volumen de vista.
 
-<img src="./media/unity_near.png" alt="Sample Image" width="400"/>
+<img src="./media/unity_near.png" alt="Unity near clipping" width="400"/>
+
+---
+
+### Three.js (React Three Fiber)
+
+Se implementó una escena interactiva con tres cubos a distintas profundidades (`Z = 0`, `Z = -5`, `Z = -10`) y botones para cambiar en tiempo real entre cámara perspectiva y ortográfica, usando `OrbitControls` para navegación libre.
+
+```jsx
+import { PerspectiveCamera, OrthographicCamera, OrbitControls } from '@react-three/drei';
+
+// Perspectiva: el FOV y la distancia Z determinan el tamaño aparente
+<PerspectiveCamera makeDefault position={[0, 3, 8]} fov={60} near={0.1} far={100} />
+
+// Ortográfica: el tamaño en pantalla es independiente de la profundidad
+<OrthographicCamera makeDefault position={[0, 3, 8]} zoom={55} near={0.1} far={100} />
+```
+
+Los objetos están posicionados a diferentes Z para que la diferencia sea visible al cambiar de modo:
+
+```jsx
+const OBJECTS = [
+  { position: [0, 0,   0], color: '#ef4444', label: 'Z = 0\n(cercano)'  },
+  { position: [0, 0,  -5], color: '#22c55e', label: 'Z = -5\n(medio)'   },
+  { position: [0, 0, -10], color: '#3b82f6', label: 'Z = -10\n(lejano)' },
+];
+```
+
+Con la cámara en **perspectiva** el cubo azul (Z = -10) aparece notablemente más pequeño que el rojo (Z = 0). Al cambiar a **ortográfica**, los tres cubos tienen el mismo tamaño en pantalla.
+
+---
 
 ### Processing
 
-Para el ejercicio en processing, ubicamos 3 cubos con diferentes valores de `z`, y definimos una variable booleana para poder decidir si se iba a presentar la vista ortogonal o en perspectiva.
+Se ubicaron 3 cubos con diferentes valores de `z` y se definió una variable booleana para alternar entre proyección ortogonal y perspectiva usando las funciones nativas `perspective()` y `ortho()` de Processing.
 
+```java
+pushMatrix();
+translate(-100, 0, -100);
+fill(255, 0, 0);
+box(80);
+popMatrix();
+
+pushMatrix();
+translate(0, 0, -300);
+fill(0, 255, 0);
+box(80);
+popMatrix();
+
+pushMatrix();
+translate(100, 0, -500);
+fill(0, 0, 255);
+box(80);
+popMatrix();
 ```
-  pushMatrix();
-  translate(-100, 0, -100);
-  fill(255, 0, 0);
-  box(80);
-  popMatrix();
 
-  pushMatrix();
-  translate(0, 0, -300);
-  fill(0, 255, 0);
-  box(80);
-  popMatrix();
+**Proyección en perspectiva:**
 
-  pushMatrix();
-  translate(100, 0, -500);
-  fill(0, 0, 255);
-  box(80);
-  popMatrix();
-```
+<img src="./media/processing_perspectiva.png" alt="Processing perspectiva" width="400"/>
 
-#### Proyección en perspectiva
+**Proyección ortogonal:**
 
-<img src="./media/processing_perspectiva.png" alt="Sample Image" width="400"/>
+<img src="./media/processing_orto.png" alt="Processing ortogonal" width="400"/>
 
-#### Proyección ortogonal
-
-<img src="./media/processing_orto.png" alt="Sample Image" width="400"/>
+---
 
 ## Aprendizajes y dificultades
 
-- Las "Cámaras" en motores gráficos son en realidad una matriz de proyección.
+- Las "cámaras" en motores gráficos no son más que una **matriz de proyección** que transforma el espacio 3D en coordenadas de pantalla 2D. Cambiar de perspectiva a ortográfica equivale a swapear esa matriz.
+- La división por `w` (perspectiva divide) es lo que produce el efecto de profundidad: es matemáticamente lo mismo que la proyección de un rayo desde el centro de la cámara hacia el punto en el espacio.
+- El **FOV** y la distancia focal `d` son inversamente proporcionales: `d = 1/tan(FOV/2)`. Un FOV amplio corresponde a una `d` pequeña.
+- El **near clipping plane** existe porque la división por `z` explota cuando `z → 0`; el hardware necesita ese límite mínimo para que los cálculos de profundidad (z-buffer) sean numericamente estables.
+- En Three.js, `PerspectiveCamera` y `OrthographicCamera` son exactamente esas matrices más una transformación de viewport, lo que hace muy directo trasladar la teoría al código.

@@ -1,252 +1,283 @@
-# Taller transformaciones homogéneas y cambios de base
+# Taller Transformaciones Homogéneas y Cambios de Base
 
-Gabriel Andres Anzola Tachak
+**Estudiante:** Gabriel Andres Anzola Tachak  
+**Entregado:** 27 Feb 2026
 
-Entregado: 27 Feb 2026
+---
 
 ## Objetivo
 
-El taller aplicar transformaciones y coordenadas homogeneas en róbotica y gráficos por computador.
+Aplicar transformaciones homogéneas (traslación, rotación, escala) como multiplicaciones de matrices 4×4, comprender la composición de transformaciones mediante producto matricial, y explorar cambios de base entre sistemas de referencia locales y globales en contextos de robótica y gráficos 3D.
+
+---
+
+## Fundamento matemático
+
+### ¿Por qué coordenadas homogéneas?
+
+En 3D euclidiano las rotaciones y escalas se representan con matrices 3×3, pero la **traslación no puede expresarse como multiplicación**:
+
+```
+punto_trasladado = punto + t   ← suma, no puede unirse a una rotación en una sola multiplicación
+```
+
+Agregando una cuarta coordenada `w = 1` a cada punto, la traslación se convierte en multiplicación de matrices 4×4, lo que permite **componer cualquier transformación en un solo producto**:
+
+```
+(x, y, z)  →  (x, y, z, 1)
+```
+
+### Matrices de transformación homogénea
+
+**Traslación** por `(tx, ty, tz)`:
+
+```
+     ┌ 1  0  0  tx ┐
+T =  │ 0  1  0  ty │
+     │ 0  0  1  tz │
+     └ 0  0  0   1 ┘
+```
+
+**Rotación alrededor de Z** por ángulo `θ`:
+
+```
+      ┌ cos θ  -sin θ  0  0 ┐
+Rz =  │ sin θ   cos θ  0  0 │
+      │   0       0    1  0 │
+      └   0       0    0  1 ┘
+```
+
+**Rotación alrededor de X** por ángulo `θ`:
+
+```
+      ┌ 1    0       0    0 ┐
+Rx =  │ 0  cos θ  -sin θ  0 │
+      │ 0  sin θ   cos θ  0 │
+      └ 0    0       0    1 ┘
+```
+
+**Rotación alrededor de Y** por ángulo `θ`:
+
+```
+      ┌  cos θ  0  sin θ  0 ┐
+Ry =  │    0    1    0    0 │
+      │ -sin θ  0  cos θ  0 │
+      └    0    0    0    1 ┘
+```
+
+### Composición de transformaciones
+
+La clave del taller es que **concatenar transformaciones = multiplicar matrices**. Si quiero rotar y luego trasladar:
+
+```
+M_compuesta = T · R
+```
+
+El orden importa: `T · R ≠ R · T` en general.
+
+### Transformaciones locales vs. globales en una jerarquía
+
+En una cadena cinemática (brazo robótico, sistema solar):
+
+```
+M_global_hijo = M_global_padre · M_local_hijo
+```
+
+Esto permite que el hijo herede automáticamente el movimiento del padre: si el padre rota, el hijo rota con él **además** de su propio movimiento local.
+
+---
 
 ## Implementaciones
 
-### Brazo róbotico en Python
+### Brazo robótico en Python
 
-El modelo que se vá a utilizar consiste en un brazo con 3 articulaciones (hombro, codo, muñeca, o shoulder, elbow and wrist en inglés). Y existe una herencia de forma que el codo, y muñeca heredan el movimiento del hombro, la muñeca y la mano el del codo, y la muñeca se encarga únicamente de mover la mano. Cada una de esas partes del brazo tiene su sistema de coordenadas independiente, y el hombro se encuentra anclado al origen por simplicidad.
+Se modeló un brazo con 3 articulaciones: hombro (`shoulder`), codo (`elbow`) y muñeca (`wrist`), cada una con su sistema de coordenadas local. El hombro está anclado al origen.
 
-<img src="./media/newplot.png" alt="Sample Image" width="400"/>
+```python
+import numpy as np
 
-Cada articulación tiene dos matrices de transformación, una local, representando sus coordenadas con respecto al padre, y otra global, representando las coordenadas con respecto al mundo, la cual se define de la siguiente forma:
+# Posición de cada articulación relativa a su padre (local), en coordenadas homogéneas
+shoulder = np.array([[0, 0, 0, 1]]).T
+elbow    = np.array([[4, 0, 0, 1]]).T
+wrist    = np.array([[2, 0, 0, 1]]).T
+hand     = np.array([[1, 0, 0, 1]]).T
 
-$$M_{global hijo} = M_{global padre} * M_{local hijo}$$
-
-Y en nuestro modelo, debido a que el codo rota con respecto al hombro (el cual está en el origen), entonces se tiene que:
-
-$$ M*{global codo} = M*{local codo}$$
-
-Definimos unas coordenadas inciales, y guardamos las matrices "base" para poder hacer las transformaciones en base a estas después.
-
-```
-# Coordinates relative to its father (local)
-shoulder = np.array([[0,0,0,1]]).T
-elbow = np.array([[4,0,0,1]]).T
-wrist = np.array([[2,0,0,1]]).T
-hand = np.array([[1,0,0,1]]).T
-
+# Matrices de posición base (traslación pura, identidad + offset)
 M_elbow = np.eye(4)
-M_elbow[:,3] = elbow[:,0]
+M_elbow[:, 3] = elbow[:, 0]
 
 Ml_wrist = np.eye(4)
-Ml_wrist[:,3] = wrist[:,0]
+Ml_wrist[:, 3] = wrist[:, 0]
+
+# Posición global de la muñeca = posición global del codo × posición local de la muñeca
 Mg_wrist = M_elbow @ Ml_wrist
 
 Ml_hand = np.eye(4)
-Ml_hand[:,3] = hand[:,0]
+Ml_hand[:, 3] = hand[:, 0]
 Mg_hand = Mg_wrist @ Ml_hand
-
-
-M_elbow_base = M_elbow.copy()
-Ml_wrist_base = Ml_wrist.copy()
-Mg_wrist_base = Mg_wrist.copy()
-Ml_hand_base = Ml_hand.copy()
-Mg_hand_base = Mg_hand.copy()
 ```
 
-Después de definió una función general para obtener la matriz de rotación de cada eje `x,y,z`.
+**Función general de rotación** para cualquier eje:
 
-```
+```python
 def rotationMatrix(theta, axis):
+    c, s = np.cos(theta), np.sin(theta)
     if axis == 'z':
-      return np.array([
-          [np.cos(theta), -1*np.sin(theta), 0, 0],
-          [np.sin(theta), np.cos(theta), 0, 0],
-          [0,0,1,0],
-          [0,0,0,1]
-      ])
+        return np.array([[c, -s, 0, 0],
+                         [s,  c, 0, 0],
+                         [0,  0, 1, 0],
+                         [0,  0, 0, 1]])
     elif axis == 'x':
-        return np.array([
-            [1, 0, 0, 0],
-            [0, np.cos(theta), -1*np.sin(theta), 0],
-            [0, np.sin(theta), np.cos(theta), 0],
-            [0,0,0,1]
-
-        ])
+        return np.array([[1, 0,  0, 0],
+                         [0, c, -s, 0],
+                         [0, s,  c, 0],
+                         [0, 0,  0, 1]])
     elif axis == 'y':
-        return np.array([
-            [np.cos(theta), 0, np.sin(theta), 0],
-            [0,1,0,0],
-            [-np.sin(theta),0,np.cos(theta),0],
-            [0,0,0,1]
-        ])
-    else:
-      raise Exception("Invalid axis")
+        return np.array([[ c, 0, s, 0],
+                         [ 0, 1, 0, 0],
+                         [-s, 0, c, 0],
+                         [ 0, 0, 0, 1]])
 ```
 
-Despues se definió una función para manejar las rotaciones de cada articulación y que se encarga de propagar estas rotaciones a sus respectivos hijos
+Al rotar el hombro, la transformación se **propaga** automáticamente al codo y la muñeca recomputando sus matrices globales:
 
-#### Función para rotar la articulación del hombro
-
-```
+```python
 def rotateShoulder(theta, axis):
-    global M_elbow, Ml_wrist, Mg_wrist, Ml_hand, Mg_hand, elbow_t_x, elbow_t_y, elbow_t_z
-
-    if axis == 'z':
-      matrix = rotationMatrix(elbow_t_x, 'x') @ rotationMatrix(elbow_t_y, 'y') @ rotationMatrix(theta, 'z')
-      elbow_t_z = theta
-    elif axis == 'x':
-      matrix = rotationMatrix(theta, 'x') @ rotationMatrix(elbow_t_y, 'y') @ rotationMatrix(elbow_t_z, 'z')
-      elbow_t_x = theta
-    elif axis == 'y':
-      matrix = rotationMatrix(elbow_t_x, 'x') @ rotationMatrix(theta, 'y') @ rotationMatrix(elbow_t_z, 'z')
-      elbow_t_y = theta
-    else:
-      raise Exception("Invalid axis")
-
-    # Perform rotation
+    # Rotar el codo en coordenadas locales
+    matrix = rotationMatrix(theta, axis)
     M_elbow = matrix @ M_elbow_base
 
-    # Update children
+    # Propagar al hijo (muñeca) y nieto (mano)
     Mg_wrist = M_elbow @ Ml_wrist
-    Mg_hand = Mg_wrist @ Ml_hand
+    Mg_hand  = Mg_wrist @ Ml_hand
 ```
 
-#### Función para rotar la articulación del codo
+El mismo patrón se aplica a `rotateElbow` y `rotateWrist`, propagando solo hacia los hijos descendientes.
 
-```
-def rotateElbow(theta, axis):
-    global M_elbow, Ml_wrist, Mg_wrist, Ml_hand, Mg_hand, wrist_t_x, wrist_t_y, wrist_t_z
+<img src="./media/newplot.png" alt="Brazo robótico estático" width="400"/>
 
-    if axis == 'z':
-      matrix = rotationMatrix(wrist_t_x, 'x') @ rotationMatrix(wrist_t_y, 'y') @ rotationMatrix(theta, 'z')
-      wrist_t_z = theta
-    elif axis == 'x':
-      matrix = rotationMatrix(theta, 'x') @ rotationMatrix(wrist_t_y, 'y') @ rotationMatrix(wrist_t_z, 'z')
-      wrist_t_x = theta
-    elif axis == 'y':
-      matrix = rotationMatrix(wrist_t_x, 'x') @ rotationMatrix(theta, 'y') @ rotationMatrix(wrist_t_z, 'z')
-      wrist_t_y = theta
-    else:
-      raise Exception("Invalid axis")
+El gráfico interactivo (Plotly + sliders) permite controlar el ángulo de cada articulación en tiempo real:
 
-    # Perform rotation
-    Ml_wrist = matrix @ Ml_wrist_base
-    Mg_wrist = M_elbow @ Ml_wrist
-    # Update children
-    Mg_hand = Mg_wrist @ Ml_hand
-```
+![Brazo robótico animado](./media/brazo_robot.gif)
 
-#### Función para rotar la articulación de la muñeca
+---
 
-```
-def rotateWrist(theta, axis):
-    global M_elbow, Ml_wrist, Mg_wrist, Ml_hand, Mg_hand, hand_t_x, hand_t_y, hand_t_z
+### Unity — Carro con llantas
 
-    if axis == 'z':
-      matrix = rotationMatrix(hand_t_x, 'x') @ rotationMatrix(hand_t_y, 'y') @ rotationMatrix(theta, 'z')
-      hand_t_z = theta
-    elif axis == 'x':
-      matrix = rotationMatrix(theta, 'x') @ rotationMatrix(hand_t_y, 'y') @ rotationMatrix(hand_t_z, 'z')
-      hand_t_x = theta
-    elif axis == 'y':
-      matrix = rotationMatrix(hand_t_x, 'x') @ rotationMatrix(theta, 'y') @ rotationMatrix(hand_t_z, 'z')
-      hand_t_y = theta
-    else:
-      raise Exception("Invalid axis")
+Se modeló un carro compuesto de un chasis y dos llantas. Cada llanta aplica rotación de forma diferente para comparar las dos aproximaciones disponibles en Unity.
 
-    # Perform rotation
-    Ml_hand = matrix @ Ml_hand_base
-    Mg_hand = Mg_wrist @ Ml_hand
-```
+**Llanta 1: rotación mediante `Transform.Rotate`** (API de alto nivel):
 
-Despues de esto se generó un gráfico interactivo con Plotly, el cual permite manejar la rotaciones de cada articulación independiente por medio de sliders.
+```csharp
+public class Llanta : MonoBehaviour
+{
+    public float velocidadRotacion = 67f;
 
-#### Gráfico interactivo
-
-![idk](./media/brazo_robot.gif)
-
-### Unity
-
-Aplicar transformaciones homogéneas en coordenadas 2D y 3D, comprender la composición de transformaciones, realizar cambios de base entre sistemas de referencia, y aplicar estos conceptos en robótica y gráficos por computador.
-
-![alt text](./media/Unity_Carro.png)
-
-Sobre las llantas se realizan transformaciones de rotación, haciendo una trasformacion diferente sobre cada una de las llantas.
-
-Sobre la primera llanta se realiza una conversación local mediante Transform.position variando mediante una velocidad de rotacion y un delta de tiempo.
-
-```c#
-    public class Llanta : MonoBehaviour
+    void Update()
     {
-        public float velocidadRotacion = 67f; // grados por segundo
-
-        void Update()
-        {
-            transform.Rotate(Vector3.up * velocidadRotacion * Time.deltaTime, Space.Self);
-        }
+        // Transform.Rotate aplica internamente una multiplicación de matrices
+        transform.Rotate(Vector3.up * velocidadRotacion * Time.deltaTime, Space.Self);
     }
+}
 ```
 
-Sobre la sergunda llanta se realiza una rotación local mediante conversiones entre Quaternion y Matrix4x4 primero se convierte la rotación actual en matriz, se crea otra matriz con el ángulo incremental calculado por la velocidad y deltaTime, luego se multiplican ambas matrices para combinar las rotaciones y finalmente se convierte la matriz resultante de nuevo a Quaternion para aplicarla al transform.localRotation
+**Llanta 2: rotación explícita con `Matrix4x4`** (API de bajo nivel, equivalente al Python):
 
-```c#
+```csharp
 public class Llanta_matrix : MonoBehaviour
 {
-    public float velocidadRotacion = 67f; // grados por segundo
+    public float velocidadRotacion = 67f;
+
     void Update()
     {
         float angulo = velocidadRotacion * Time.deltaTime;
+
+        // Matriz incremental de rotación para este frame
         Matrix4x4 rotacion = Matrix4x4.Rotate(Quaternion.Euler(0f, angulo, 0f));
-        Matrix4x4 actual = Matrix4x4.Rotate(transform.localRotation);   // Convierte la rotación actual del transform en matriz
-        Matrix4x4 resultado = actual * rotacion;      // Aplica la rotación multiplicando matrices
+
+        // Matriz de rotación actual del transform
+        Matrix4x4 actual = Matrix4x4.Rotate(transform.localRotation);
+
+        // Composición: nueva_rotación = rotación_acumulada × incremento
+        Matrix4x4 resultado = actual * rotacion;
+
+        // Convertir de vuelta a Quaternion para asignar al transform
         transform.localRotation = resultado.rotation;
     }
 }
 ```
 
-#### Gráfico interactivo
+Ambas producen el mismo resultado visual, pero la segunda muestra explícitamente que Unity gestiona las transformaciones internamente como **productos de matrices 4×4**.
 
-Se dibujaron los ejes con locales del objeto en la escena usando Gizmos, extendiendo cada linea desde la posición del objeto hasta 1 cordenada.
+![Carro en Unity](./media/Unity_Carro.png)
 
-![alt text](./media/Unity_ejes.png)
+Los ejes locales del objeto se visualizan con Gizmos para comprobar el sistema de referencia:
 
-Asi ejecutando las rotaciones de las llantas y una traslacion constante sobre el Chasis se genera la siguiente animacion
+![Ejes locales](./media/Unity_ejes.png)
 
-![alt text](./media/Unity_animacion.gif)
+El chasis traslada y las llantas rotan produciendo la animación completa:
+
+![Animación Unity](./media/Unity_animacion.gif)
+
+---
 
 ### Sistema Solar en Three.js
 
-Para la implementación en Three.js (empleando la librería React Three Fiber), se desarrolló un sistema solar animado (Sol, Tierra, Luna) para demostrar las transformaciones, anidación de coordenadas locales frente a globales y la aplicación de matemáticas manuales con matrices de transformación equivalentes a la versión de Python, pero en el contexto de animaciones directas.
+Se implementó un sistema Sol–Tierra–Luna para demostrar la composición jerárquica de transformaciones. La jerarquía de escena de R3F reproduce la relación `M_global = M_padre × M_local` de forma automática.
 
-A diferencia de React puro donde el estado re-renderiza todo constantemente, para animar sin costo de rendimiento se apagó la actualización automática de matrices (`matrixAutoUpdate={false}`) en cada nodo u objeto, y se aplicaron manipulaciones con `THREE.Matrix4` usando el hook `useFrame`.
+Para evitar el overhead de React en cada frame, se desactivó el recálculo automático de matrices (`matrixAutoUpdate={false}`) y se manipularon directamente con `THREE.Matrix4` en `useFrame`:
 
-La Luna orbita alrededor del sistema local de la Tierra, que a su vez orbita en el sistema global del Sol.
+**Tierra orbitando el Sol (composición rotación × traslación):**
 
 ```javascript
-// Órbita de la Luna (Hijo Local de la Tierra)
-if (moonRef.current) {
-  mRotationMoonY.makeRotationY(t * 5); // Rotación
-  mTranslationMoon.makeTranslation(2, 0, 0); // Radio de la órbita = 2
+// En useFrame, t = tiempo acumulado en segundos
 
-  mMoonLocal.identity();
-  mMoonLocal.multiply(mRotationMoonY);
-  mMoonLocal.multiply(mTranslationMoon);
+// Rotación de órbita alrededor del Sol
+mRotationEarthY.makeRotationY(t * 1.5);
 
-  moonRef.current.matrix.copy(mMoonLocal); // Aplicar matriz manualmente
-}
+// Traslación radial (radio de órbita = 8 unidades)
+mTranslationEarth.makeTranslation(8, 0, 0);
+
+// Composición: primero rota el eje, luego traslada sobre ese eje rotado
+// → produce órbita circular alrededor del origen
+mEarthLocal.identity();
+mEarthLocal.multiply(mRotationEarthY);
+mEarthLocal.multiply(mTranslationEarth);
+
+// Spin propio de la Tierra sobre su eje
+const spinEarth = new THREE.Matrix4().makeRotationY(t * 4);
+mEarthLocal.multiply(spinEarth);
+
+// Asignar directamente. Como Earth es hijo de Sun en el scene graph,
+// Three.js aplica: M_global_Earth = M_global_Sun × mEarthLocal
+earthRef.current.matrix.copy(mEarthLocal);
 ```
 
-Para visualizar que las transformaciones sí están ocurriendo a nivel algorítmico, también se captura y se muestra constantemente en UI la matriz 4x4 completa de cada cuerpo celeste, demostrando que:
+**Luna orbitando la Tierra (exactamente el mismo patrón, a menor escala):**
 
-1. El Sol, al estar en el origen pero con un Spin (`makeRotationY`), solo varía sus componentes de rotación.
-2. La Tierra y la Luna componen rotación y traslación, variando también la cuarta columna (X, Y, Z globales, limitados a su Frame Local).
-3. Todas tienen un sistema de ejes `axesHelper` para dar feedback visual a las transformaciones locales.
+```javascript
+mRotationMoonY.makeRotationY(t * 5);         // Órbita más rápida
+mTranslationMoon.makeTranslation(2, 0, 0);   // Radio = 2 unidades
 
-#### Gráfico interactivo
+mMoonLocal.identity();
+mMoonLocal.multiply(mRotationMoonY);
+mMoonLocal.multiply(mTranslationMoon);
 
-![idk](./media/threejs_solar_system.gif)
+moonRef.current.matrix.copy(mMoonLocal);
+// M_global_Moon = M_global_Earth × mMoonLocal
+//               = M_global_Sun × mEarthLocal × mMoonLocal
+```
+
+La UI muestra la matriz 4×4 completa de cada cuerpo celeste en tiempo real, donde la cuarta columna refleja la posición global (X, Y, Z) y el bloque 3×3 superior izquierdo codifica la orientación.
+
+![Sistema Solar Three.js](./media/threejs_solar_system.gif)
+
+---
 
 ## Aprendizajes y dificultades
 
-- Fué dificil poder generar el gráfico interactivo de la manera correcta para que no generara parpadeos ni auto-escalamientos extraños que afectaran su estética.
-- Es necesaria una matriz de rotación por cada eje cuando se trabaja en tercera dimensión, sin embargo se puede calcular el producto entre estas para tener una única matriz de rotación.
-- En `React Three Fiber`, hay que tener cuidado con las dependencias desactualizadas (como la discrepancia de compatibilidad entre React 19 y versiones antiguas de `@react-three/drei`), para lo cual la solución más limpia terminó siendo usar controles vanilla directamente extraídos de `three/addons`.
+- **La composición de transformaciones no es conmutativa**: `T·R ≠ R·T`. Trasladar y luego rotar produce un resultado diferente a rotar primero. En la órbita terrestre esto es crítico: si se pone la traslación antes de la rotación, la Tierra no orbita sino que gira en torno a sí misma desplazada.
+- **Las jerarquías eliminan la aritmética manual de coordenadas globales**: basta con definir cada movimiento en coordenadas locales y el producto `M_global_padre × M_local_hijo` hace el resto. El brazo robótico lo muestra claramente.
+- **En Three.js es necesario generar una nueva rotación desde cero en cada frame** (no acumular `makeRotationY` sobre la misma matriz), de lo contrario la rotación no parte del ángulo correcto. El truco es recalcular desde `t` (tiempo total) en vez de delta.
+- **`matrixAutoUpdate = false`** es esencial para control manual de matrices en R3F: sin ello Three.js sobreescribe la matriz con los valores de `position`/`rotation`/`scale` del objeto en cada frame, descartando las operaciones manuales.
+- En Unity, `Matrix4x4.rotation` hace una decompocición de la parte rotacional de la matriz 4×4, recordando que la representación interna de Unity siempre es Quaternion. El paso matriz → Quaternion → matriz puede acumular error de punto flotante a lo largo del tiempo.
