@@ -35,7 +35,8 @@ Implementación y comparación visual de cinco modelos de reflexión de luz sobr
 > Ejecutar `npm run dev` y abrir `http://localhost:5173` para ver la escena interactiva.  
 > Usar OrbitControls para rotar la cámara y apreciar los reflejos especulares desde distintos ángulos.
 
-*(Capturas a añadir en `media/` después de ejecución local)*
+![Comparación de esferas](media/comparacion_esferas.gif)
+![Detalle PBR](media/detalle_espejo.png)
 
 ---
 

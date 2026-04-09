@@ -48,9 +48,8 @@ El `<Canvas>` tiene `shadows` habilitado. La `directionalLight` tiene `castShado
 - `media/escena_completa.gif` — Orbita completa mostrando las 3 luces y 3 materiales
 - `media/sombras_detalle.png` — Vista cenital de las sombras proyectadas sobre el plano
 
-<!-- Una vez capturadas, reemplaza los marcadores con las imágenes: -->
-<!-- ![Escena completa](media/escena_completa.gif) -->
-<!-- ![Detalle sombras](media/sombras_detalle.png) -->
+![Escena completa](media/escena_completa.gif)
+![Detalle sombras](media/sombras_detalle.png)
 
 ---
 
