@@ -1,0 +1,177 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #111111;
+  color: #ffffff;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#root {
+  height: 100vh;
+}
+
+.app-layout {
+  display: flex;
+  height: 100vh;
+}
+
+/* Left panel */
+.controller-panel {
+  width: 260px;
+  min-width: 260px;
+  background: #1a1a1a;
+  border-right: 1px solid #333;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+}
+
+.panel-title {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #aaa;
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.control-label {
+  font-size: 12px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.control-value {
+  font-size: 12px;
+  color: #2a82f7;
+  font-weight: 600;
+  margin-left: auto;
+}
+
+.control-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.slider {
+  width: 100%;
+  accent-color: #2a82f7;
+  cursor: pointer;
+  height: 4px;
+}
+
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+}
+
+.toggle-label {
+  font-size: 13px;
+  color: #ccc;
+}
+
+.toggle {
+  position: relative;
+  width: 40px;
+  height: 22px;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #333;
+  border-radius: 22px;
+  transition: background 0.2s;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: '';
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.toggle input:checked + .toggle-slider {
+  background: #2a82f7;
+}
+
+.toggle input:checked + .toggle-slider:before {
+  transform: translateX(18px);
+}
+
+.desc-text {
+  font-size: 11px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.badge-pbr {
+  background: #1a3a5c;
+  color: #2a82f7;
+  border: 1px solid #2a82f7;
+}
+
+.badge-basic {
+  background: #3a1a1a;
+  color: #f76a2a;
+  border: 1px solid #f76a2a;
+}
+
+.status-bar {
+  margin-top: auto;
+  font-size: 12px;
+  color: #666;
+  border-top: 1px solid #333;
+  padding-top: 12px;
+}
+
+/* Right: 3D canvas */
+.canvas-container {
+  flex: 1;
+  height: 100vh;
+}
