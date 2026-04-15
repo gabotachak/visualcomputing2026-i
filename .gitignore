@@ -476,3 +476,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,visualstudiocode,node,unity,python,jupyternotebooks,processing
+
+# Gifs
+capture_gifs.mjs
