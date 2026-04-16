@@ -1,7 +1,10 @@
 # Taller Transformaciones
 
-**Estudiante:** Gabriel Andres Anzola Tachak  
-**Fecha de entrega:** 20 de Febrero de 2026  
+## Nombre del estudiante
+Gabriel Andres Anzola Tachak
+
+## Fecha de entrega
+2026-02-20
 
 ## Descripción breve
 El objetivo de este taller es explorar los conceptos fundamentales de **transformaciones geométricas** (traslación, rotación y escala) en distintos entornos de programación visual. Para ello hemos creado un "Hola Mundo Visual" animando las transformaciones de objetos de forma estática y en función del tiempo.
@@ -17,7 +20,7 @@ _Nota: La implementación en Unity fue omitida según se indicó en las instrucc
 
 ## Implementaciones
 
-### 1. Python (Jupyter Notebook)
+### Python (Jupyter Notebook)
 En la carpeta `python/` se encuentra un Jupyter Notebook (`transformaciones.ipynb`) que hace uso de `numpy` y `matplotlib` para definir la geometría de un polígono 2D. Utilizando matrices de transformación $3\times3$ en coordenadas homogéneas, se aplican sobre la figura simultáneamente las tres transformaciones:
 - **Rotación** completa sobre su eje.
 - **Traslación** en trayectoria de arco/ovalada interactuando con funciones seno y coseno combinadas con el tiempo.
@@ -25,7 +28,7 @@ En la carpeta `python/` se encuentra un Jupyter Notebook (`transformaciones.ipyn
 
 El resultado es convertido en imágenes fotograma por fotograma y finalmente compilado en un GIF animado utilizando `imageio` que es almacenado en la carpeta `media/python/`.
 
-### 2. Processing (3D)
+### Processing (3D)
 En la carpeta `processing/transformaciones/` se presenta un sketch en lenguaje estandar basado en Java desarrollado usando `Processing 3D (P3D)`. 
 En la escena hay un cubo simple rodeado por unos ejes locales XYZ. Gracias a las directivas `pushMatrix()` y `popMatrix()` las transformaciones se aíslan de la cámara y del UI.
 - Se hace uso de `millis()` para obtener el tiempo dinámico de la animación.
@@ -33,7 +36,7 @@ En la escena hay un cubo simple rodeado por unos ejes locales XYZ. Gracias a las
 - El cubo hace un recorrido sinusoidal de izquierda a derecha.
 - Un factor de escala modificado por la función seno hace aparentar un efecto de tipo latido sobre el cubo.
 
-### 3. Three.js con React Three Fiber
+### Three.js con React Three Fiber
 El directorio `threejs/` contiene una aplicación web completa desarrollada con Vite y React.
 La escena incluye un *Icosaedro* representado mediante `meshStandardMaterial` de forma wireframe brillante, posicionado en un `Canvas` general que también incluye grillas y componentes estáticos visuales.
 - Se utiliza el hook `useFrame` de **React Three Fiber** para actualizar la propiedad de rotación, posición y escala del objeto de manera declarativa cada vez que el renderizador emite un nuevo *frame*.

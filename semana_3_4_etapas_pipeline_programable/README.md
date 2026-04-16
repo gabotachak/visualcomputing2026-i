@@ -1,12 +1,16 @@
 # Taller 3.4 — Etapas del Pipeline Programable
 
-**Nombre:** Gabriel Andres Anzola Tachak  
-**Fecha de entrega:** 2026-04-08  
+## Nombre del estudiante
+Gabriel Andres Anzola Tachak
+
+## Fecha de entrega
+2026-04-08
+
 **Curso:** Computación Visual 2026-I
 
 ---
 
-## Descripción
+## Descripción breve
 
 Este taller recorre las cuatro etapas del pipeline gráfico programable implementando
 shaders GLSL personalizados con `ShaderMaterial` de Three.js.
@@ -28,7 +32,7 @@ per-fragmento sin recompilar el shader.
 
 ---
 
-## Implementaciones por entorno
+## Implementaciones
 
 | Entorno  | Archivo(s) | Descripción |
 |----------|-----------|-------------|

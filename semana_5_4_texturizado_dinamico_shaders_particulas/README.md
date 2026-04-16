@@ -1,11 +1,14 @@
 # Taller - Texturizado Creativo: Materiales Dinámicos con Shaders y Partículas
 
-**Estudiante:** Gabo Tachak  
-**Fecha:** 2026-04-15
+## Nombre del estudiante
+Gabo Tachak
+
+## Fecha de entrega
+2026-04-15
 
 ---
 
-## Descripción
+## Descripción breve
 
 Los **materiales dinámicos** son aquellos cuyas propiedades visuales pueden cambiar en tiempo de ejecución sin necesidad de recompilar los shaders. Esto se logra mediante **uniforms**: variables que el CPU envía a la GPU cada frame, permitiendo que el shader calcule su salida en función del tiempo, la posición del mouse, parámetros de usuario u otros estados del sistema. La interactividad resultante hace que la escena se sienta viva y reactiva.
 
@@ -186,7 +189,9 @@ Los siguientes prompts fueron utilizados durante el desarrollo:
 
 ---
 
-## Aprendizajes
+## Aprendizajes y dificultades
+
+### Aprendizajes
 
 - **Los uniforms permiten interactividad sin recompilar**: una vez compilado el shader, basta con modificar los valores de los uniforms en JavaScript para cambiar el resultado visual. No hay overhead de compilación por frame.
 - **Técnicas de shaders para simular fenómenos naturales**: sumas de senos con frecuencias y fases diferentes generan patrones de ondas creíbles; la función `distance()` en GLSL permite efectos radiales eficientes; `mix()` facilita transiciones suaves entre colores.
@@ -196,7 +201,7 @@ Los siguientes prompts fueron utilizados durante el desarrollo:
 
 ---
 
-## Dificultades
+### Dificultades
 
 - **Coordenadas mouse UV vs NDC**: el mouse en Three.js se reporta en NDC (−1 a +1) pero los UVs de la esfera están en 0–1. La conversión `mouse * 0.5 + 0.5` en `useFrame` resolvió la desincronización entre el punto donde apunta el mouse y donde el shader detectaba la deformación.
 - **Partículas con longitud cero**: cuando una partícula se regenera exactamente en el origen, la normalización del vector de dirección producía `NaN`. Se resolvió con `|| 0.001` como fallback en el denominador.

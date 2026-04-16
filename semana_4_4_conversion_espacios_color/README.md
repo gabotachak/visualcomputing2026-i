@@ -1,11 +1,14 @@
 # Taller Conversion Espacios Color
 
-**Estudiante:** Gabriel Andrés Anzola Tachak  
-**Fecha:** 2026-04-08
+## Nombre del estudiante
+Gabriel Andrés Anzola Tachak
+
+## Fecha de entrega
+2026-04-08
 
 ---
 
-## Descripción
+## Descripción breve
 
 Implementación completa de conversión y manipulación de espacios de color usando OpenCV y scikit-image. Se cubrieron las conversiones RGB→HSV/HLS/LAB/YCrCb/Grayscale, segmentación por color con morfología, manipulación de canales, histogramas con `cv2.calcHist`, CLAHE sobre LAB y extracción de paleta dominante con K-means.
 
@@ -153,7 +156,7 @@ semana_4_4_conversion_espacios_color/
 
 ---
 
-## Checklist
+## Checklist de entrega
 
 - [x] Conversiones RGB→HSV, HLS, LAB, YCrCb, Grayscale con `cv2.cvtColor`
 - [x] Visualización de canales individuales para cada espacio

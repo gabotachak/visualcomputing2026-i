@@ -1,10 +1,12 @@
 # Taller Proyecciones 3D: Cómo ve una una cámara virtual
 
+## Nombre del estudiante
 Gabriel Andres Anzola Tachak
 
-Entregado: 27 Feb 2026
+## Fecha de entrega
+2026-02-27
 
-## Objetivo
+## Descripción breve
 
 El taller consiste en experimentar con los diversos tipos de proyección de las cámaras en Unity, y con los párametros que estas tienen.
 

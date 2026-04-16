@@ -1,11 +1,14 @@
 # Taller - Shaders Básicos: Primeros Efectos Visuales desde Código GLSL
 
-**Estudiante:** Gabo Tachak  
-**Fecha de entrega:** 2026-04-14
+## Nombre del estudiante
+Gabo Tachak
+
+## Fecha de entrega
+2026-04-14
 
 ---
 
-## Descripción
+## Descripción breve
 
 Los shaders son programas que corren directamente en la GPU y determinan cómo se renderizan los píxeles y vértices de una escena 3D. Son el núcleo de cualquier efecto visual moderno: desde gradientes simples hasta reflexiones físicamente correctas. En este taller se explora la escritura manual de shaders en GLSL (OpenGL Shading Language) integrados en una escena Three.js con React Three Fiber.
 
@@ -164,7 +167,9 @@ Se utilizó IA generativa para:
 
 ---
 
-## Aprendizajes
+## Aprendizajes y dificultades
+
+### Aprendizajes
 
 - **Vertex vs Fragment:** el vertex shader corre una vez por vértice (miles), el fragment una vez por píxel (millones). Es mucho más barato calcular en el vertex y pasar datos via `varying`.
 - **Uniforms como puente:** permiten controlar el shader desde JavaScript sin recompilarlo. Son ideales para parámetros que cambian en tiempo de ejecución como colores, tiempo o intensidades.
@@ -172,7 +177,7 @@ Se utilizó IA generativa para:
 - **UV mapping:** las coordenadas UV van de (0,0) en la esquina inferior izquierda a (1,1) en la superior derecha. `vUv.y` directamente da la altura normalizada — ideal para gradientes verticales sin cálculos extra.
 - **`mix` y `smoothstep`:** son las funciones más usadas en fragment shaders para interpolaciones suaves. `mix(a, b, t)` es simplemente `a*(1-t) + b*t`.
 
-## Dificultades
+### Dificultades
 
 - **Actualización de uniforms con `useMemo`:** inicialmente los uniforms de colores no se actualizaban al cambiar los sliders porque `useMemo` solo crea el objeto una vez. La solución fue actualizar `.value` directamente dentro de `useFrame()` en lugar de recrear el objeto de uniforms.
 - **WebGL headless en captura:** el navegador headless de Playwright no tiene GPU real, por lo que Three.js cae en el software renderer. Los shaders funcionan correctamente pero el rendimiento es menor. Las capturas muestran el resultado correcto.

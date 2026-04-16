@@ -1,11 +1,14 @@
 # Taller 3.2 — Z-Buffer y Depth Testing
 
-**Estudiante:** Gabriel Andres Anzola Tachak  
-**Fecha de entrega:** 2026-04-08  
+## Nombre del estudiante
+Gabriel Andres Anzola Tachak
+
+## Fecha de entrega
+2026-04-08
 
 ---
 
-## Descripción
+## Descripción breve
 
 Este taller explora el mecanismo de **Z-buffer (depth buffer)** como solución al problema de la visibilidad en el renderizado 3D.
 

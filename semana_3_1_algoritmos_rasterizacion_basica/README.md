@@ -1,11 +1,14 @@
 # Taller 3.1 — Algoritmos de Rasterización Básica
 
-**Estudiante:** Gabriel Andres Anzola Tachak  
-**Fecha de entrega:** 2026-04-08
+## Nombre del estudiante
+Gabriel Andres Anzola Tachak
+
+## Fecha de entrega
+2026-04-08
 
 ---
 
-## Descripción
+## Descripción breve
 
 Este taller implementa los tres algoritmos clásicos de rasterización directamente sobre un mapa de píxeles, sin depender de librerías de alto nivel para el dibujo. El objetivo es comprender cómo una GPU o software renderer convierte primitivas geométricas (líneas, círculos, triángulos) en píxeles discretos.
 

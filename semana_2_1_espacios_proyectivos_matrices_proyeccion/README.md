@@ -1,11 +1,14 @@
 # Taller Espacios Proyectivos y Matrices de Proyección
 
-**Estudiante:** Gabriel Andres Anzola Tachak  
-**Entregado:** 27 Feb 2026
+## Nombre del estudiante
+Gabriel Andres Anzola Tachak
+
+## Fecha de entrega
+2026-02-27
 
 ---
 
-## Objetivo
+## Descripción breve
 
 Comprender la geometría proyectiva como fundamento matemático del pipeline gráfico. Se implementaron y compararon las dos proyecciones clásicas —perspectiva y ortogonal— desde sus matrices homogéneas, demostrando cómo un motor gráfico pasa de un punto 3D a un píxel en pantalla.
 
@@ -112,17 +115,17 @@ def proyectar_ortogonal(puntos):
 
 Primero se visualizaron los puntos en el espacio 3D para tener referencia:
 
-<img src="./media/python_3d.png" alt="Puntos en 3D" width="400"/>
+![Puntos en 3D](./media/python_3d.png)
 
 Luego se graficó la proyección perspectiva con tres distancias focales distintas (`d = 0.5, 1, 2`) para observar cómo `d` afecta la dispersión de los puntos proyectados:
 
-<img src="./media/python_perspectiva_0.png" alt="Perspectiva d=0.5" width="400"/>
-<img src="./media/python_perspectiva_1.png" alt="Perspectiva d=1" width="400"/>
-<img src="./media/python_perspectiva_2.png" alt="Perspectiva d=2" width="400"/>
+![Perspectiva d=0.5](./media/python_perspectiva_0.png)
+![Perspectiva d=1](./media/python_perspectiva_1.png)
+![Perspectiva d=2](./media/python_perspectiva_2.png)
 
 Finalmente la proyección ortogonal, donde los puntos caen directamente en sus coordenadas XY:
 
-<img src="./media/python_orto.png" alt="Proyección ortogonal" width="400"/>
+![Proyección ortogonal](./media/python_orto.png)
 
 ---
 
@@ -132,19 +135,19 @@ Se colocaron 3 cubos alineados en el eje Z para comparar ambas proyecciones dire
 
 **Perspectiva (configuración por defecto):** los cubos más lejanos se ven más pequeños.
 
-<img src="./media/unity_perspectiva.png" alt="Unity perspectiva" width="400"/>
+![Unity perspectiva](./media/unity_perspectiva.png)
 
 **Ortográfica:** los tres cubos se ven del mismo tamaño aunque estén a distintas profundidades.
 
-<img src="./media/unity_orto.png" alt="Unity ortogonal" width="400"/>
+![Unity ortogonal](./media/unity_orto.png)
 
 **FOV reducido a 30°:** al estrechar el frustum se recortan los cubos de los costados.
 
-<img src="./media/unity_fov_30.png" alt="Unity FOV 30" width="400"/>
+![Unity FOV 30](./media/unity_fov_30.png)
 
 **Near clipping plane ajustado a 3.5:** la cara frontal del cubo más cercano deja de renderizarse porque queda fuera del volumen de vista.
 
-<img src="./media/unity_near.png" alt="Unity near clipping" width="400"/>
+![Unity near clipping](./media/unity_near.png)
 
 ---
 
@@ -202,11 +205,11 @@ popMatrix();
 
 **Proyección en perspectiva:**
 
-<img src="./media/processing_perspectiva.png" alt="Processing perspectiva" width="400"/>
+![Processing perspectiva](./media/processing_perspectiva.png)
 
 **Proyección ortogonal:**
 
-<img src="./media/processing_orto.png" alt="Processing ortogonal" width="400"/>
+![Processing ortogonal](./media/processing_orto.png)
 
 ---
 

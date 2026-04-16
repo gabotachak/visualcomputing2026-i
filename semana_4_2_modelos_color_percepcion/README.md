@@ -1,11 +1,14 @@
 # Taller Modelos Color Percepcion
 
-**Estudiante:** Gabriel Andrés Anzola Tachak  
-**Fecha:** 2026-04-08
+## Nombre del estudiante
+Gabriel Andrés Anzola Tachak
+
+## Fecha de entrega
+2026-04-08
 
 ---
 
-## Descripción
+## Descripción breve
 
 Exploración de la percepción del color desde el punto de vista humano y computacional. Se implementaron conversiones entre espacios de color (RGB→HSV, RGB→CIE Lab), simulaciones de daltonismo (protanopía y deuteranopía), y transformaciones de brillo, contraste y temperatura de color.
 
@@ -125,7 +128,7 @@ semana_4_2_modelos_color_percepcion/
 
 ---
 
-## Checklist
+## Checklist de entrega
 
 - [x] Conversión RGB → HSV con visualización de canales H, S, V
 - [x] Conversión RGB → CIE Lab con visualización de canales L, a, b

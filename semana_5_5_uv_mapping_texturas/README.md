@@ -1,11 +1,14 @@
 # Taller - UV Mapping: Texturas que Encajan Perfectamente
 
-**Estudiante:** Gabo Tachak  
-**Fecha:** 2026-04-15
+## Nombre del estudiante
+Gabo Tachak
+
+## Fecha de entrega
+2026-04-15
 
 ---
 
-## Descripción
+## Descripción breve
 
 El UV mapping es el proceso de proyectar una imagen 2D (textura) sobre la superficie de un modelo 3D. El nombre viene de los ejes U y V, que son las coordenadas bidimensionales del espacio de textura, equivalentes a X e Y pero reservados para evitar confusión con el espacio 3D. Sin un mapeo UV correcto, las texturas aparecen distorsionadas, estiradas o repetidas de formas no deseadas.
 
@@ -174,7 +177,9 @@ return (
 
 ---
 
-## Aprendizajes
+## Aprendizajes y dificultades
+
+### Aprendizajes
 
 - **Diferencia entre coordenadas 3D y UV**: XYZ define la posición en el espacio; UV define qué punto de la imagen de textura corresponde a cada vértice. Son sistemas completamente independientes que se vinculan por la tabla de atributos de la malla.
 - **Identificar problemas visualmente**: Una textura checkerboard es la herramienta de diagnóstico clásica porque cualquier distorsión se vuelve evidente cuando los cuadrados dejan de ser cuadrados. La grilla numerada ayuda a ver overlapping porque el mismo número aparece en regiones que no deberían compartir textura.
@@ -184,7 +189,7 @@ return (
 
 ---
 
-## Dificultades
+### Dificultades
 
 - **Transformaciones UV independientes por modelo**: Cuando varios modelos comparten la misma instancia de `THREE.Texture`, modificar `map.repeat` en uno afecta a todos porque apuntan al mismo objeto. La solución fue clonar la textura en `ModelViewer` con `texture.clone()` para que cada modelo tenga su propia copia del estado UV.
 - **`wrapS`/`wrapT` en clones**: El clon de textura no hereda el modo de wrapping automáticamente en todos los contextos. Se verificó que las texturas procedurales declaran `wrapS = wrapT = THREE.RepeatWrapping` en el generador, antes de que se clonen, para que el comportamiento de repeat sea correcto.

@@ -1,11 +1,14 @@
 # Taller Modelos Reflexion PBR
 
-**Estudiante:** Gabriel Andrés Anzola Tachak  
-**Fecha:** 2026-04-08
+## Nombre del estudiante
+Gabriel Andrés Anzola Tachak
+
+## Fecha de entrega
+2026-04-08
 
 ---
 
-## Descripción
+## Descripción breve
 
 Implementación y comparación visual de cinco modelos de reflexión de luz sobre esferas idénticas, usando React Three Fiber + Vite. Todos los objetos comparten la misma geometría y condiciones de iluminación para que las diferencias sean atribuibles exclusivamente al modelo de material.
 
@@ -117,7 +120,7 @@ semana_4_3_modelos_reflexion_pbr/
 
 ---
 
-## Checklist
+## Checklist de entrega
 
 - [x] Esfera con `MeshLambertMaterial` (difuso puro)
 - [x] Esfera con `MeshPhongMaterial` shininess=60 (Phong especular)

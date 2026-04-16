@@ -1,6 +1,6 @@
 # Taller Modelado Procedural Basico
 
-## Estudiante
+## Nombre del estudiante
 Gabriel Anzola Tachak
 
 ## Fecha de entrega
@@ -146,7 +146,7 @@ Se usó IA generativa (Claude) para:
 
 ## Aprendizajes y dificultades
 
-**Aprendizajes:**
+### Aprendizajes
 
 - Los bucles anidados son la herramienta natural para grillas; cambiar `gridSize` regenera toda la estructura sin tocar más código.
 - La parametrización trigonométrica transforma un índice lineal en una trayectoria helicoidal; modificar el radio en `useFrame` convierte esa ecuación en animación.
@@ -154,7 +154,7 @@ Se usó IA generativa (Claude) para:
 - El Fractal Brownian Motion (fBm) mediante suma de octavas produce auto-similitud: la misma "forma" aparece a diferentes escalas, que es la definición de fractal.
 - `geometry.attributes.position.needsUpdate = true` y `computeVertexNormals()` son obligatorios después de modificar el buffer para que Three.js reenvíe los datos a la GPU y recalcule la iluminación correctamente.
 
-**Dificultades:**
+### Dificultades
 
 - La animación de la espiral con `animationSpeed = 0.01` era demasiado lenta para observarse (el ciclo completo tomaba ~109 s). Se ajustó el valor por defecto a 0.5, lo que produce ~1 ciclo visible en 5 segundos.
 - La fórmula de ffmpeg para la paleta GIF fallaba sin la bandera `-update 1`, ya que intentaba tratar el archivo de paleta como una secuencia de imágenes.

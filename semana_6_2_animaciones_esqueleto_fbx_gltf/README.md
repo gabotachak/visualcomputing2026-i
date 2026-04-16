@@ -1,11 +1,14 @@
 # Taller - Animaciones por Esqueleto: Importando y Reproduciendo Animaciones
 
-**Estudiante:** Gabriel Andrés Anzola Tachak  
-**Fecha:** 2026-04-14
+## Nombre del estudiante
+Gabriel Andrés Anzola Tachak
+
+## Fecha de entrega
+2026-04-14
 
 ---
 
-## Descripción
+## Descripción breve
 
 Implementación de animaciones esqueléticas (skeletal animation) usando modelos **GLTF** descargados desde **Mixamo**. Se desarrolló una aplicación interactiva en **Three.js con React Three Fiber** que carga un modelo 3D con armadura, accede a múltiples clips de animación embebidos en el archivo, controla la reproducción con transiciones suaves (crossfade) y permite modificar la velocidad en tiempo real. El resultado es una interfaz responsiva con panel lateral que demuestra el flujo completo: carga → selección → transición → velocidad.
 
@@ -173,7 +176,9 @@ el mixer.timeScale se actualice correctamente cuando cambia la velocidad"
 - **Armaduras anidadas en GLTF:** Si el modelo exportado desde Blender tiene armaduras anidadas, `useGLTF()` puede omitir clips. Solución: asegurar que todas las animaciones están asociadas a la armadura raíz antes de exportar.
 - **Performance:** En modelos con muchos bones + OrbitControls + render por frame, usar `precision="mediump"` en el Canvas alivia la GPU en dispositivos de gama baja.
 
-**Mejoras futuras:** blending por velocidad de personaje (blend Idle/Walk según magnitud de movimiento), control por teclado (Space, W, R), animation events para sincronizar audio, y soporte para varios personajes intercambiables.
+### Mejoras futuras
+
+Blending por velocidad de personaje (blend Idle/Walk según magnitud de movimiento), control por teclado (Space, W, R), animation events para sincronizar audio, y soporte para varios personajes intercambiables.
 
 ---
 

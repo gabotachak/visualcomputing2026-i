@@ -1,7 +1,10 @@
 # Taller Luces Sombras Radiometria
 
-**Estudiante:** Gabriel Andres Anzola Tachak  
-**Fecha de entrega:** 2026-04-08
+## Nombre del estudiante
+Gabriel Andres Anzola Tachak
+
+## Fecha de entrega
+2026-04-08
 
 ---
 

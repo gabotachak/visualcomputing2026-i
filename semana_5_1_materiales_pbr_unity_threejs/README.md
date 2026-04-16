@@ -1,11 +1,14 @@
 # Taller - Materiales Realistas: Introducción a PBR en Three.js
 
-**Estudiante:** Gabriel Andrés Anzola Tachak  
-**Fecha:** 2026-04-14
+## Nombre del estudiante
+Gabriel Andrés Anzola Tachak
+
+## Fecha de entrega
+2026-04-14
 
 ---
 
-## Descripción
+## Descripción breve
 
 Implementación interactiva de materiales **Physically Based Rendering (PBR)** usando **Three.js con React Three Fiber**. Se desarrolló una escena que coloca dos esferas lado a lado bajo iluminación idéntica: la izquierda carga un set completo de texturas PBR (albedo, roughness, metalness y normal map) aplicadas sobre `MeshStandardMaterial`; la derecha usa únicamente un color RGB plano sin mapas de textura. La comparación simultánea permite observar de forma directa cómo los mapas de textura modulan la respuesta ante la luz frente a un material sin información de superficie.
 
@@ -147,7 +150,9 @@ metalness y roughness"
 
 - **Comparación válida:** Para que la comparación sea significativa, ambas esferas deben estar iluminadas exactamente igual (misma geometría, misma posición relativa a la luz) y rotar al mismo ritmo. Cualquier diferencia de posición o geometría introduce variables confusoras.
 
-**Mejoras futuras:** entorno HDRI con `<Environment>` de Drei para especular más realista, soporte para displacement map en la esfera PBR con subdivisión extra, múltiples sets de texturas intercambiables con un selector.
+### Mejoras futuras
+
+Entorno HDRI con `<Environment>` de Drei para especular más realista, soporte para displacement map en la esfera PBR con subdivisión extra, múltiples sets de texturas intercambiables con un selector.
 
 ---
 
@@ -194,7 +199,7 @@ semana_5_1_materiales_pbr_unity_threejs/
 
 ---
 
-## Checklist
+## Checklist de entrega
 
 - [x] Carpeta `semana_5_1_materiales_pbr_unity_threejs/` existe
 - [x] `threejs/` con estructura completa (src/, public/, package.json, vite.config.js)

@@ -280,7 +280,7 @@ Taller realizado de forma individual.
 ## Estructura del proyecto
 
 ```
-semana_01_1_construyendo_mundo_3d/
+semana_1_1_construyendo_mundo_3d/
 ├── python/
 │   ├── model_visualization.ipynb    # ✅ Notebook Jupyter principal
 │   └── README.md                    # ✅ Documentación Python
@@ -338,7 +338,7 @@ semana_01_1_construyendo_mundo_3d/
 
 ## Checklist de entrega
 
-- [X] Carpeta con nombre `semana_01_1_construyendo_mundo_3d/`
+- [X] Carpeta con nombre `semana_1_1_construyendo_mundo_3d/`
 - [X] Código limpio y funcional en carpetas por entorno
 - [X] GIFs/imágenes incluidos con nombres descriptivos en carpeta subcarpetas de `media/`
 - [X] README completo con todas las secciones requeridas

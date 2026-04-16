@@ -1,11 +1,14 @@
 # Taller Transformaciones Homogéneas y Cambios de Base
 
-**Estudiante:** Gabriel Andres Anzola Tachak  
-**Entregado:** 27 Feb 2026
+## Nombre del estudiante
+Gabriel Andres Anzola Tachak
+
+## Fecha de entrega
+2026-02-27
 
 ---
 
-## Objetivo
+## Descripción breve
 
 Aplicar transformaciones homogéneas (traslación, rotación, escala) como multiplicaciones de matrices 4×4, comprender la composición de transformaciones mediante producto matricial, y explorar cambios de base entre sistemas de referencia locales y globales en contextos de robótica y gráficos 3D.
 
@@ -154,7 +157,7 @@ def rotateShoulder(theta, axis):
 
 El mismo patrón se aplica a `rotateElbow` y `rotateWrist`, propagando solo hacia los hijos descendientes.
 
-<img src="./media/newplot.png" alt="Brazo robótico estático" width="400"/>
+![Brazo robótico estático](./media/newplot.png)
 
 El gráfico interactivo (Plotly + sliders) permite controlar el ángulo de cada articulación en tiempo real:
 

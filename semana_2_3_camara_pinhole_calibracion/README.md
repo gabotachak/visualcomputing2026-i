@@ -1,8 +1,9 @@
 # Simulación de Cámara Pinhole: Calibración y Distorsión
 
-Entregado: 27 Feb 2026
+## Fecha de entrega
+2026-02-27
 
-## Objetivo
+## Descripción breve
 
 El objetivo de este ejercicio es implementar y visualizar los principios de una cámara pinhole (cámara oscura) utilizando Three.js. Esto incluye la proyección de coordenadas 3D a 2D de pantalla, la visualización del frustum de la cámara y la simulación interactiva de la distorsión radial de lente (efectos de barril y acerico).
 

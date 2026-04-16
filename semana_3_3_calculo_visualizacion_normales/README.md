@@ -1,12 +1,16 @@
 # Taller 3.3 — Cálculo y Visualización de Normales
 
-**Nombre:** Gabriel Andres Anzola Tachak  
-**Fecha de entrega:** 2026-04-08  
+## Nombre del estudiante
+Gabriel Andres Anzola Tachak
+
+## Fecha de entrega
+2026-04-08
+
 **Curso:** Computación Visual 2026-I
 
 ---
 
-## Descripción
+## Descripción breve
 
 Este taller aborda el cálculo de vectores normales desde cero, sin depender de funciones
 de biblioteca que los entreguen automáticamente. A partir de una malla triangular se
@@ -24,7 +28,7 @@ el vector XYZ al espacio de color RGB).
 
 ---
 
-## Implementaciones por entorno
+## Implementaciones
 
 | Entorno  | Archivo principal              | Descripción |
 |----------|-------------------------------|-------------|
