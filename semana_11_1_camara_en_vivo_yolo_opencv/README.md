@@ -29,6 +29,10 @@ Sistema de detección de objetos en tiempo real usando YOLOv8 con webcam. El pip
 | `cv2.Canny()` | Filtro de bordes activado con tecla F |
 | `time.time()` | Cálculo de FPS: 1 / (t_actual - t_previo) |
 
+---
+
+## Código relevante
+
 **Código real para webcam:**
 ```python
 from ultralytics import YOLO

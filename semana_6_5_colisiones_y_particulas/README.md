@@ -93,6 +93,10 @@ Taller realizado de forma individual.
 
 ```
 semana_6_5_colisiones_y_particulas/
+├── unity/
+│   └── Assets/
+│       └── Scripts/
+│           └── ColisionParticulas.cs
 ├── media/
 └── README.md
 ```

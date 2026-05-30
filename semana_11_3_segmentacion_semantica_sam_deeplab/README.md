@@ -28,6 +28,10 @@ Implementación de segmentación semántica usando modelos state-of-the-art. Se 
 | IoU per class | Intersection over Union para evaluar calidad |
 | `cv2.addWeighted()` | Overlay de máscara sobre imagen (50% blend) |
 
+---
+
+## Código relevante
+
 **Código real con DeepLabV3:**
 ```python
 import torch

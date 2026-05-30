@@ -28,6 +28,10 @@ Sistema de reconocimiento de posturas corporales usando MediaPipe Pose (33 landm
 | `angle(shoulder, elbow, wrist)` | Detecta brazos levantados si < 60° |
 | `angle(hip, knee, ankle)` | Detecta sentado si < 100° |
 
+---
+
+## Código relevante
+
 **Código real con webcam:**
 ```python
 import mediapipe as mp

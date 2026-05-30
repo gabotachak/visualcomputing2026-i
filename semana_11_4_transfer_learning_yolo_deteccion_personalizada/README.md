@@ -28,6 +28,10 @@ Entrenamiento de YOLOv8 mediante transfer learning para detectar 5 clases person
 | mAP@0.5 | Mean Average Precision con IoU threshold 0.5 |
 | Confusion matrix | Matriz de confusión para análisis de errores por clase |
 
+---
+
+## Código relevante
+
 **Código real de entrenamiento:**
 ```python
 from ultralytics import YOLO

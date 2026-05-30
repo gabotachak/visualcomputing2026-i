@@ -111,6 +111,7 @@ Este curso proporciona una introducción a los conceptos básicos de la computac
   - [threejs/](./semana_6_4_cinematica_inversa_ik/threejs)
 - [semana_6_5_colisiones_y_particulas/](./semana_6_5_colisiones_y_particulas)
   - [media/](./semana_6_5_colisiones_y_particulas/media)
+  - [unity/](./semana_6_5_colisiones_y_particulas/unity)
 - [semana_6_6_interpolacion_movimiento_animaciones/](./semana_6_6_interpolacion_movimiento_animaciones)
   - [media/](./semana_6_6_interpolacion_movimiento_animaciones/media)
   - [threejs/](./semana_6_6_interpolacion_movimiento_animaciones/threejs)

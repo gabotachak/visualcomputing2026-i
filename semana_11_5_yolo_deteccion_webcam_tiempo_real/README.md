@@ -28,6 +28,10 @@ Benchmark comparativo de YOLOv8 nano/small/medium para detección en tiempo real
 | Confidence threshold sweep | 0.1 a 0.9 con análisis de detecciones y precision/recall |
 | Object counter | Dict de conteos por clase actualizado en tiempo real |
 
+---
+
+## Código relevante
+
 **Código real para benchmark:**
 ```python
 from ultralytics import YOLO
