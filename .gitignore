@@ -480,5 +480,8 @@ $RECYCLE.BIN/
 # Gifs
 capture_gifs.mjs
 
-# ToDos
-todo.md
+# MD
+CLAUDE.md
+PLAN.md
+STRUCT.md
+TODO.md
