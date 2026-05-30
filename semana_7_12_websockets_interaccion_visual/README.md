@@ -42,7 +42,15 @@ Stack: React 18 · Three.js 0.160 · @react-three/fiber 8.15 · @react-three/dre
 
 ## Resultados visuales
 
-### Three.js - Implementación
+### Python — Servidor WebSocket
+
+![Python Server Terminal](./media/python_server_terminal.png)
+Terminal del servidor WebSocket arrancado en `localhost:8765`, mostrando mensaje de inicio y muestra del JSON enviado a cada cliente.
+
+![Python Data Stream](./media/python_data_stream.png)
+Trayectoria XY de los datos enviados por el servidor (60 muestras, Δt=0.5 s). El color de cada punto corresponde al campo `color` del JSON — el movimiento sigue las funciones `sin(1.3t)` y `cos(0.9t)`.
+
+### Three.js - Cliente WebSocket
 
 ![WebSocket Viewer Overview](./media/websocket_viewer_overview.png)
 Vista del cliente Three.js en modo demo con la esfera moviéndose y el trail de historial visible.
@@ -132,6 +140,8 @@ semana_7_12_websockets_interaccion_visual/
 │   ├── semana_7_12.ipynb
 │   └── server.py
 ├── media/
+│   ├── python_server_terminal.png
+│   ├── python_data_stream.png
 │   ├── websocket_viewer_overview.png
 │   └── websocket_viewer_detail.png
 └── README.md

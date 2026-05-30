@@ -42,7 +42,10 @@ Este taller implementa una solución de **monitoreo e interacción de actividad 
 ### Historial de Actividad de Sensores (Python)
 
 ![Activity Chart](./media/activity_chart.png)
-Gráfico de barras generado por el script en Python mostrando el nivel de ocupación consolidado por zona.
+Gráfico de barras generado por `monitor.py` mostrando el nivel de ocupación consolidado por zona (snapshot actual).
+
+![Activity History](./media/python_activity_history.png)
+Panel combinado: snapshot actual (barras horizontales con semáforo de color) y serie histórica simulada de las 4 zonas durante 12 ticks (1 tick = 30 s), generado por el mismo script Python.
 
 ### Panel HUD y Representación 3D del Monitor
 
@@ -129,6 +132,7 @@ semana_15_6_monitor_visual_3d_integracion_python/
 │       └── styles.css
 ├── media/
 │   ├── activity_chart.png
+│   ├── python_activity_history.png
 │   ├── monitor_3d.png
 │   └── monitor_3d.gif
 └── README.md

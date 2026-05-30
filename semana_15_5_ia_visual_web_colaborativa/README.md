@@ -39,12 +39,20 @@ Este taller diseña y ejecuta una canalización colaborativa de datos de Intelig
 
 ## Resultados visuales
 
-### Panel de Detecciones y Escena 3D Carga Inicial
+### Python — Script de Detección y Exportación
+
+![Detection Annotated](./media/detection_annotated.png)
+Imagen sintética generada por `detect_and_export.py` con bounding boxes de las 3 detecciones (laptop 94%, cup 82%, person 89%) dibujados sobre fondo oscuro con cuadrícula.
+
+![Python JSON Output](./media/python_json_output.png)
+Visualización del archivo `detections.json` exportado: estructura completa con coordenadas 3D (posición, escala) y confianza por objeto, listo para consumo del frontend.
+
+### Three.js — Panel de Detecciones y Escena 3D
 
 ![Collaborative Web Static](./media/collaborative_web.png)
 Captura del visualizador interactivo 3D mostrando las mallas cargadas sobre la imagen de fondo, junto al panel informativo izquierdo con la lista y confianzas de los objetos detectados.
 
-### Interacción y Orbitación de la Escena 3D
+### Three.js — Interacción y Orbitación de la Escena 3D
 
 ![Collaborative Web Animation](./media/collaborative_web.gif)
 GIF animado que demuestra el paneado y rotación interactiva en 3D de las cajas de alambre sobre la imagen de fondo y la aparición de las etiquetas flotantes HUD al pasar el cursor (hover).
@@ -120,6 +128,8 @@ semana_15_5_ia_visual_web_colaborativa/
 │       ├── App.jsx
 │       └── styles.css
 ├── media/
+│   ├── detection_annotated.png
+│   ├── python_json_output.png
 │   ├── collaborative_web.png
 │   └── collaborative_web.gif
 └── README.md
